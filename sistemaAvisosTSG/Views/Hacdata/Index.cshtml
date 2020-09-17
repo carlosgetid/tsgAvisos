@@ -27,7 +27,6 @@
                 <div class="row p-2 m-1 border rounded">
                     <div class="col-12 mb-1">
                         <label class="h5 m-0" for="busqueda">Busqueda: </label>
-                        <a href="#" class="btn btn-success float-right">Buscar</a> <!--buscar-->
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
                         <input type="text" name="txtBusqueda" class="form-control" id="busqueda" placeholder="Ingresar palabra">
@@ -69,6 +68,7 @@
                             {
                                 <dd class="p-0 col-5 overflow-hidden border-top d-flex align-items-center mt-1 ml-1">@item.AVISO_DESCRIPCION</dd>
                                 <dd class="p-0 col-6 overflow-hidden border-top d-flex align-items-center mt-1">@item.AVISO_DETALLE</dd>
+                                <a href="~/Hacdata/index/?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO" class="btn btn-success float-right">Listar</a> <!--buscar-->
                             }
                         </dl>
                     </div>
@@ -81,8 +81,19 @@
                 <div class="row p-2 m-1 border rounded">
                     <div class="col-12 col-md-8">
                         <h6 class="d-inline-block">Asunto</h6>
-                        <p>Quien lo publica</p>
-                        <p>Nro aviso: 1234</p>
+                        <!--
+        <p>Quien lo publica</p>
+        <p>Nro aviso: 1234</p>
+    -->
+                        <p class="lead text-center">
+                            <em>No hay data</em>
+                            <img src="~/img/nodatafound.png" class="img-fluid" />
+                        </p>
+                        @foreach (var oLista in (SelectList)ViewBag.listaAvisos)
+                        {
+                            <p>@oLista.</p>
+                            <p>Nro aviso: 1234</p>
+                        }
                     </div>
                     <div class="col-12 col-md-4">
                         <button class="d-inline-block float-right btn btn-success">Realizar comentario</button>
@@ -92,33 +103,17 @@
                 <!--Tabla invertida opinion-->
                 <!--Zona 2.2 (4)-->
                 <div class="row p-2 m-1 border rounded">
-                    <table class="table text-white">
-                        <tr>
-                            <th class="col">Prueba</th>
-                            <th class="col">Prueba</th>
-                            <th class="col">Prueba</th>
-                        </tr>
-                        <tr>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                        </tr>
-                        <tr>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                        </tr>
-                        <tr>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                        </tr>
-                        <tr>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                            <td>C.Prueba</td>
-                        </tr>
-                    </table>
+                    <div class="col">
+                        <h6 class="d-inline-block">DETALLE</h6>
+                        <div class="row">
+                            <div class="col">
+                                <p class="lead text-center">
+                                    <em>No hay data</em>
+                                    <img src="~/img/nodatafound.png" class="img-fluid" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!--Zona 2.3 (5)-->
@@ -126,17 +121,20 @@
                     <div class="col-12">
                         <p class="h5 m-0">Listado de comentarios</p>
                         <div class="row">
-                            <div class="col-12 border-top mt-2">
-                                <label class="m-0" for="comentario">NombrePersona</label>
-                                <p class="float-right m-0">19/08/2020 19:47</p>
-                                <input type="text" disabled name="txtComentario" id="comentario" class="w-100" value="comentario de persona">
+                            <div class="col-12 mt-2">
+                                <p class="lead text-center">
+                                    <em>No hay data</em>
+                                    <img src="~/img/nodatafound.png" class="img-fluid" />
+                                </p>
                             </div>
 
-                            <div class="col-12 border-top mt-2">
-                                <label class="m-0" for="comentario">NombrePersona</label>
-                                <p class="float-right m-0">19/08/2020 19:47</p>
-                                <input type="text" disabled name="txtComentario" id="comentario" class="w-100" value="comentario de persona">
-                            </div>
+                            <!--
+    <div class="col-12 border-top mt-2">
+        <label class="m-0" for="comentario">NombrePersona</label>
+        <p class="float-right m-0">19/08/2020 19:47</p>
+        <input type="text" disabled name="txtComentario" id="comentario" class="w-100" value="comentario de persona">
+    </div>
+        -->
                         </div>
 
                     </div>
@@ -146,14 +144,24 @@
                 <div class="row p-2 m-1 border rounded">
                     <div class="col-12">
                         <p class="h5">Listado adjuntos: </p>
-                        <dl class="row text-center">
-                            <dt class="col-2"><img src="#" alt="ico"></dt>
-                            <dd class="col-10"><a href="#">Link</a></dd>
-                            <dt class="col-2"><img src="#" alt="ico"></dt>
-                            <dd class="col-10"><a href="#">Link</a></dd>
-                        </dl>
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <p class="lead text-center">
+                                    <em>No hay data</em>
+                                    <img src="~/img/nodatafound.png" class="img-fluid" />
+                                </p>
+                            </div>
+                        </div>
+                            <!--
+        <dl class="row text-center">
+            <dt class="col-2"><img src="#" alt="ico"></dt>
+            <dd class="col-10"><a href="#">Link</a></dd>
+            <dt class="col-2"><img src="#" alt="ico"></dt>
+            <dd class="col-10"><a href="#">Link</a></dd>
+        </dl>
+            -->
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

@@ -33,7 +33,34 @@ namespace sistemaAvisosTSG.Controllers
                 listadito.Add(ta);
             }
 
-            dr.Close();con.Close();
+            dr.Close(); con.Close();
+            return listadito;
+        }
+
+        public IEnumerable<SP_LISTAR_AVISO> listadoCompleto(string empresa,int aviso)
+        {
+            List<SP_LISTAR_AVISO> listadito = new List<SP_LISTAR_AVISO>();
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@empresa_codigo",empresa);
+            cmd.Parameters.AddWithValue("@aviso_numero",aviso);
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                SP_LISTAR_AVISO sp = new SP_LISTAR_AVISO();
+                sp.USUARI_NOMBRES = dr.GetString(0);
+                sp.USUARI_APEPAT = dr.GetString(1);
+                sp.AVISO_CODIGO = dr.GetDecimal(2);
+                sp.AVISO_PUBFECHA = dr.GetString(3);
+                sp.AVISO_PUBHORA = dr.GetString(4);
+                sp.AVISO_DETALLE = dr.GetString(5);
+
+                listadito.Add(sp);
+            }
+
+            dr.Close(); con.Close();
             return listadito;
         }
 
@@ -43,23 +70,13 @@ namespace sistemaAvisosTSG.Controllers
         }
 
         [HttpPost]
-        public ActionResult Buscar(int tipo,string fecha,int estado)
+        public ActionResult Index(string empresa, int aviso)
         {
-            SqlCommand cmd = new SqlCommand("SP_BUSQUEDA", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@tipo", tipo);
-            cmd.Parameters.AddWithValue("@fecha", fecha);
-            cmd.Parameters.AddWithValue("@estado", estado);
-
-            con.Open();
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-
-            }
-
-            return View();
+            //ViewBag.proveedores = new SelectList(proveedores(), "idproveedor", "nombre", idprov);
+            ViewBag.listaAvisos1 = listadoCompleto(empresa, aviso);
+            ViewBag.listaAvisos = new SelectList(listadoCompleto(empresa,aviso), "USUARI_NOMBRES", "USUARI_APEPAT", "AVISO_CODIGO", "AVISO_PUBFECHA", "AVISO_PUBHORA", "AVISO_DETALLE");
+            return Redirect("Index");
         }
+
     }
 }
