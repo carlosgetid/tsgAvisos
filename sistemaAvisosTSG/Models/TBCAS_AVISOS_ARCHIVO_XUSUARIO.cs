@@ -20,6 +20,7 @@ namespace sistemaAvisosTSG.Models
         public string AVISOARCH_HORA { get; set; }
 
         public string AVISOARCH_SYS_EST { get; set; }
+
         public string AVISOARCH_SYS_CRE { get; set; }
 
     }

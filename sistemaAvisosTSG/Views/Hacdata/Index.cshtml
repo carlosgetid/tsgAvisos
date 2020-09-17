@@ -1,4 +1,9 @@
-﻿<html lang="es">
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,8 +25,9 @@
             <div class="col-12 col-md-4 p-0">
                 <!--Zona 1.1 (1)-->
                 <div class="row p-2 m-1 border rounded">
-                    <div class="col-12">
-                        <label class="h5" for="busqueda">Busqueda: </label>
+                    <div class="col-12 mb-1">
+                        <label class="h5 m-0" for="busqueda">Busqueda: </label>
+                        <a href="#" class="btn btn-success float-right">Buscar</a> <!--buscar-->
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
                         <input type="text" name="txtBusqueda" class="form-control" id="busqueda" placeholder="Ingresar palabra">
@@ -33,7 +39,7 @@
                                 <input class="w-100" type="date">
                             </div>
                             <div class="col-12 mb-1">
-                                <select class="custom-select" id="">
+                                <select class="custom-select" name="cboEstado" id="">
                                     <option selected>Estado</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -41,7 +47,7 @@
                                 </select>
                             </div>
                             <div class="col-12 mb-1">
-                                <select class="custom-select" id="">
+                                <select class="custom-select" name="cboTipo" id="">
                                     <option selected>Tipo</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -163,3 +169,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
+
