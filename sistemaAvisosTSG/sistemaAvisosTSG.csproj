@@ -127,6 +127,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TBCAS_AVISOS.cs" />
+    <Compile Include="Models\TBCAS_AVISOS_ARCHIVO_XUSUARIO.cs" />
+    <Compile Include="Models\TBCAS_AVISOS_ESTADO.cs" />
+    <Compile Include="Models\TBCAS_AVISOS_PUBLICA.cs" />
+    <Compile Include="Models\TBCAS_AVISOS_TIPO.cs" />
+    <Compile Include="Models\TBCAS_AVISO_ARCHIVO.cs" />
+    <Compile Include="Models\TBCAS_AVISO_COMENTARIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -270,7 +277,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
