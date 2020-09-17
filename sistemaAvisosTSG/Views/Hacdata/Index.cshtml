@@ -1,4 +1,4 @@
-﻿
+﻿@model List<sistemaAvisosTSG.Models.TBCAS_AVISOS>
 @{
     ViewBag.Title = "Index";
 }
@@ -64,12 +64,12 @@
                     <div class="col-12">
                         <p class="h5">Listado: </p>
                         <p class="lead">Asuntos</p>
-                        <dl class="row text-center">
-                            <dt class="col-3">Nombre</dt>
-                            <dd class="col-9">Detalle</dd>
-
-                            <dt class="col-3">Nombre1</dt>
-                            <dd class="col-9">Detalle1</dd>
+                        <dl class="row">
+                            @foreach (var item in Model)
+                            {
+                                <dd class="p-0 col-5 overflow-hidden border-top d-flex align-items-center mt-1 ml-1">@item.AVISO_DESCRIPCION</dd>
+                                <dd class="p-0 col-6 overflow-hidden border-top d-flex align-items-center mt-1">@item.AVISO_DETALLE</dd>
+                            }
                         </dl>
                     </div>
                 </div>
