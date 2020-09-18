@@ -16,7 +16,7 @@ namespace sistemaAvisosTSG
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Avisos", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Hacdata", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
