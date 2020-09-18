@@ -37,32 +37,33 @@
                         <p class="lead m-0">Filtros: </p>
                         <div class="row">
                             <div class="col-12 mb-1">
-                                <input class="w-100" type="date">
+                                <input class="w-100" type="date" name="dtFecha"/>
                             </div>
                             <div class="col-12 mb-1">
-                                @Html.DropDownList("AVISO_TIPO_NRO", (SelectList)ViewBag.listaTipo, new { @class = "custom-select" })
-                                <select class="custom-select" name="cboEstado" id="">
+                                <select class="custom-select" name="cboTipo" id="">
                                     <option selected>Estado</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                    @{
+                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_ESTADO> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_ESTADO>;
 
-                                <div class="col-12 mb-1">
-                                    <select class="custom-select" name="cboTipo" id="">
-                                        <option selected>Tipo</option>
+                                        foreach (var oEstado in estado)
+                                        {
+                                            <option value="@oEstado.AVISO_ESTADO_NRO">@oEstado.AVISO_ESTADO_DESCRIP</option>
+                                        }
+                                    }
+
+                                </select>
+                                <select class="custom-select" name="cboTipo" id="">
+                                      <option selected>Tipo</option>
                                         @{
                                             IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO>;
 
-                                            <option value="@tipo.">One</option>
-
-
+                                            foreach (var oTipo in tipo)
+                                            {
+                                                <option value="@oTipo.AVISO_TIPO_NRO">@oTipo.AVISO_TIPO_DESCRIP</option>
+                                            }                   
                                         }
                                         
-                                    </select>
-                                </div>
-
-
+                                 </select>
                             </div>
                             
                         </div>
