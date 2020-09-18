@@ -85,7 +85,7 @@ namespace sistemaAvisosTSG.Controllers
         public IEnumerable<TBCAS_AVISOS_ESTADO> listaEstado()
         {
             List<TBCAS_AVISOS_ESTADO> listadito = new List<TBCAS_AVISOS_ESTADO>();
-            SqlCommand cmd = new SqlCommand("SP_LISTAR_TIPO", con);
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_ESTADO", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             con.Open();
@@ -95,7 +95,7 @@ namespace sistemaAvisosTSG.Controllers
             {
                 TBCAS_AVISOS_ESTADO ta = new TBCAS_AVISOS_ESTADO();
                 ta.AVISO_ESTADO_DESCRIP = dr.GetString(0);
-                ta.AVISO_ESTADO_NRO = dr.GetDecimal(1);
+                ta.AVISO_ESTADO_NRO = dr.GetString(1);
                 listadito.Add(ta);
             }
 
@@ -107,10 +107,8 @@ namespace sistemaAvisosTSG.Controllers
         public ActionResult Index()
         {
             /*para combos*/
-            ViewBag.listaTipoHola = listaTipo();
-
-            ViewBag.listaTipo = new SelectList(listaTipo(), "AVISO_TIPO_NRO", "AVISO_TIPO_DESCRIP");
-            ViewBag.listaEstado = new SelectList(listaEstado(), "AVISO_ESTADO_NRO", "AVISO_ESTADO_DESCRIP");
+            ViewBag.listaTipo = listaTipo();
+            ViewBag.listaEstado = listaEstado();
 
 
             /*listados*/
