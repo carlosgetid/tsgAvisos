@@ -61,17 +61,69 @@ namespace sistemaAvisosTSG.Controllers
             return sp;
         }
 
-        public ActionResult Index(SP_LISTAR_AVISO sp)
+        public IEnumerable<TBCAS_AVISOS_TIPO> listaTipo()
         {
-            ViewBag.listaAvisos = sp.AVISO_CODIGO;
+            List<TBCAS_AVISOS_TIPO> listadito = new List<TBCAS_AVISOS_TIPO>();
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_TIPO", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                TBCAS_AVISOS_TIPO ta = new TBCAS_AVISOS_TIPO();
+                ta.AVISO_TIPO_DESCRIP = dr.GetString(0);
+                ta.AVISO_TIPO_NRO = dr.GetDecimal(1);
+                listadito.Add(ta);
+            }
+
+            dr.Close(); con.Close();
+            return listadito;
+        }
+
+        public IEnumerable<TBCAS_AVISOS_ESTADO> listaEstado()
+        {
+            List<TBCAS_AVISOS_ESTADO> listadito = new List<TBCAS_AVISOS_ESTADO>();
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_TIPO", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                TBCAS_AVISOS_ESTADO ta = new TBCAS_AVISOS_ESTADO();
+                ta.AVISO_ESTADO_DESCRIP = dr.GetString(0);
+                ta.AVISO_ESTADO_NRO = dr.GetDecimal(1);
+                listadito.Add(ta);
+            }
+
+            dr.Close(); con.Close();
+            return listadito;
+        }
+
+
+        public ActionResult Index()
+        {
+            /*para combos*/
+            ViewBag.listaTipoHola = listaTipo();
+
+            ViewBag.listaTipo = new SelectList(listaTipo(), "AVISO_TIPO_NRO", "AVISO_TIPO_DESCRIP");
+            ViewBag.listaEstado = new SelectList(listaEstado(), "AVISO_ESTADO_NRO", "AVISO_ESTADO_DESCRIP");
+
+
+            /*listados*/
+            ViewBag.listaAvisos = listaCompleto("1001", 2001);
+
+            /*lista principal*/
             return View(listaAvisos());
         }
 
-        [HttpPost]
-        public ActionResult Index (string empresa, int aviso)
+        public ActionResult Buscar(string empresa, int aviso)
         {
             SP_LISTAR_AVISO sp= listaCompleto(empresa, aviso);
-            return Index(sp);
+            return RedirectToAction("Index", new { oSp = sp});
         }
 
     }
