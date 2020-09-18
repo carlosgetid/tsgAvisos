@@ -144,9 +144,6 @@
                                         
                                     }
                                 }
-
-
-                               
                             </div>
                         </div>
                     </div>
@@ -157,22 +154,34 @@
                     <div class="col-12">
                         <p class="h5 m-0">Listado de comentarios</p>
                         <div class="row">
-                            <div class="col-12 mt-2">
-                                <p class="lead text-center">
-                                    <em>No hay data</em>
-                                    <img src="~/img/nodatafound.png" class="img-fluid" />
-                                </p>
-                            </div>
 
-                            <!--
-                            <div class="col-12 border-top mt-2">
-                                <label class="m-0" for="comentario">NombrePersona</label>
-                                <p class="float-right m-0">19/08/2020 19:47</p>
-                                <input type="text" disabled name="txtComentario" id="comentario" class="w-100" value="comentario de persona">
-                            </div>
-                                -->
+                            @{ 
+                                var listaComentario = ViewBag.listaComentario as IEnumerable<sistemaAvisosTSG.Models.SP_LISTAR_COMENTARIO>;
+
+                                if (listaComentario.FirstOrDefault().AVISOCOM_COMENTARIO.IsEmpty())
+                                {
+                                    <div class="col-12 mt-2">
+                                        <p class="lead text-center">
+                                            <em>No hay data</em>
+                                            <img src="~/img/nodatafound.png" class="img-fluid" />
+                                        </p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    foreach (var oComentario in listaComentario)
+                                    {
+                                    <div class="col-12 border-top mt-2">
+                                        <label class="m-0" for="comentario">@oComentario.USUARI_NOMBRES @oComentario.USUARI_APEPAT</label>
+                                        <p class="float-right m-0">@oComentario.AVISOCOM_FECHA @oComentario.AVISOCOM_HORA</p>
+                                        <textarea class="form-control w-100 col-12" disabled name="txtComentario" id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
+                                        
+                                    </div>
+                                    }
+
+                                }
+                            }
                         </div>
-
                     </div>
                 </div>
 
@@ -181,20 +190,35 @@
                     <div class="col-12">
                         <p class="h5">Listado adjuntos: </p>
                         <div class="row">
+                            @{ var listadoAdjuntos = ViewBag.listaAdjunto as IEnumerable<sistemaAvisosTSG.Models.SP_LISTAR_ADJUNTOS>;
+
+                                if (listadoAdjuntos.FirstOrDefault().AVISOARCH_CODIGO==0)
+                                {
                             <div class="col-12 mt-2">
                                 <p class="lead text-center">
                                     <em>No hay data</em>
                                     <img src="~/img/nodatafound.png" class="img-fluid" />
                                 </p>
                             </div>
+                                }
+                                else
+                                {
+                            <dl class="row text-center pl-2 pr-2">
+                                    @foreach(var oAdjuntos in listadoAdjuntos)
+                                    {
+                            
+                                <dd class="col-4 border-top"><p>@oAdjuntos.AVISO_ARCHIVO</p></dd>
+                                <dd class="col-8 border-top"><a href="@oAdjuntos.AVISO_RUTA">@oAdjuntos.AVISO_RUTA</a></dd>
+
+                                    }
+                            </dl>
+                                }
+
+                            }
+                            
                         </div>
                         <!--
-                        <dl class="row text-center">
-                            <dt class="col-2"><img src="#" alt="ico"></dt>
-                            <dd class="col-10"><a href="#">Link</a></dd>
-                            <dt class="col-2"><img src="#" alt="ico"></dt>
-                            <dd class="col-10"><a href="#">Link</a></dd>
-                        </dl>
+                        
                             -->
                     </div>
                 </div>
@@ -212,7 +236,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
-}
+                                }
 
 </html>
 

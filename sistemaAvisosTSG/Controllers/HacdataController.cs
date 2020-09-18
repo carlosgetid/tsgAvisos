@@ -103,16 +103,75 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
+        public IEnumerable<SP_LISTAR_COMENTARIO> listaComentario(string empresa, int aviso)
+        {
+            List<SP_LISTAR_COMENTARIO> listadito = new List<SP_LISTAR_COMENTARIO>();
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_COMENTARIO", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
+            cmd.Parameters.AddWithValue("@aviso_numero", aviso);
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                SP_LISTAR_COMENTARIO sp = new SP_LISTAR_COMENTARIO();
+                sp.USUARI_NOMBRES = dr.GetString(0);
+                sp.USUARI_APEPAT = dr.GetString(1);
+                sp.AVISOCOM_COMENTARIO = dr.GetString(2);
+                sp.AVISOCOM_FECHA = dr.GetString(3);
+                sp.AVISOCOM_HORA = dr.GetString(4);
+
+                listadito.Add(sp);
+            }
+
+            dr.Close(); con.Close();
+            return listadito;
+        }
+
+        public IEnumerable<SP_LISTAR_ADJUNTOS> listaAdjunto(string empresa, int aviso)
+        {
+            List<SP_LISTAR_ADJUNTOS> listadito = new List<SP_LISTAR_ADJUNTOS>();
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_ADJUNTOS", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
+            cmd.Parameters.AddWithValue("@aviso_numero", aviso);
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                SP_LISTAR_ADJUNTOS sp = new SP_LISTAR_ADJUNTOS();
+                sp.EMPRESA_CODIGO = dr.GetString(0);
+                sp.AVISO_CODIGO= dr.GetDecimal(1);
+                sp.AVISOARCH_CODIGO = dr.GetDecimal(2);
+                sp.AVISO_ARCHIVO = dr.GetString(3);
+                sp.AVISO_RUTA = dr.GetString(4);
+                
+
+                listadito.Add(sp);
+            }
+
+            dr.Close(); con.Close();
+            return listadito;
+        }
+
+
 
         public ActionResult Index()
         {
+            string empresa ="9999";
+            int aviso = 9999;
+
             /*para combos*/
             ViewBag.listaTipo = listaTipo();
             ViewBag.listaEstado = listaEstado();
 
 
             /*listados*/
-            ViewBag.listaAvisos = listaCompleto("1001", 2001);
+            ViewBag.listaAvisos = listaCompleto(empresa, aviso);
+            ViewBag.listaComentario = listaComentario(empresa, aviso);
+            ViewBag.listaAdjunto = listaAdjunto(empresa, aviso);
 
             /*lista principal*/
             return View(listaAvisos());

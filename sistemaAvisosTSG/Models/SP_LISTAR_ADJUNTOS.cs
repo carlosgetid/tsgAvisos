@@ -7,7 +7,10 @@ namespace sistemaAvisosTSG.Models
 {
     public class SP_LISTAR_ADJUNTOS
     {
-        /*private string EMPRESA_CODIGO
-            B.[AVISO_CODIGO],[AVISOARCH_USUARIO],B.[AVISOARCH_CODIGO],[AVISO_ARCHIVO],[AVISO_RUTA],[AVISOARCH_SYS_EST*/
+        public string EMPRESA_CODIGO { get; set; }
+        public decimal AVISO_CODIGO { get; set; }
+        public decimal AVISOARCH_CODIGO { get; set; }
+        public string AVISO_ARCHIVO { get; set; }
+        public string AVISO_RUTA { get; set; }
     }
 }

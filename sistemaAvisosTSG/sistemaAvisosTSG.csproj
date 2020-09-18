@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Models\SP_LISTAR_ADJUNTOS.cs" />
     <Compile Include="Models\SP_LISTAR_AVISO.cs" />
+    <Compile Include="Models\SP_LISTAR_COMENTARIO.cs" />
     <Compile Include="Models\TBCAS_AVISOS.cs" />
     <Compile Include="Models\TBCAS_AVISOS_ARCHIVO_XUSUARIO.cs" />
     <Compile Include="Models\TBCAS_AVISOS_ESTADO.cs" />
