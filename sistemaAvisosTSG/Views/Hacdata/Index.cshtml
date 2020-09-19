@@ -254,10 +254,12 @@
     </script>
     <script>
         let foo = @Html.Raw(Json.Encode(Model));
+        console.log(foo[0]);
         console.log(foo[0].EMPRESA_CODIGO);
+        console.log(foo[0].AVISO_NRO);
     </script>
 </body>
-                                }
+}
 
 </html>
 
