@@ -6,7 +6,7 @@
 
 <h2>Login</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("iniciarSesion", "Usuarios")) 
 {
     @Html.AntiForgeryToken()
     

@@ -13,5 +13,12 @@ namespace sistemaAvisosTSG.Controllers
         {
             return View();
         }
+
+        public ActionResult iniciarSesion(String codigo, String pass)
+        {
+            System.Diagnostics.Debug.WriteLine(codigo);
+            System.Diagnostics.Debug.WriteLine(pass);
+            return View();
+        }
     }
 }
