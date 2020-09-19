@@ -31,13 +31,13 @@
                         <label class="h5 m-0" for="busqueda">Busqueda: </label>
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
-                        <input type="text" name="txtBusqueda" class="form-control" id="busqueda" placeholder="Ingresar palabra">
+                        <input type="text" name="txtBusqueda" class="form-control busqueda" placeholder="Ingresar palabra">
                     </div>
                     <div class="col-12 mt-1">
                         <p class="lead m-0">Filtros: </p>
                         <div class="row">
                             <div class="col-12 mb-1">
-                                <input class="w-100" type="date" name="dtFecha"/>
+                                <input class="w-100" type="date" name="dtFecha" />
                             </div>
                             <div class="col-12 mb-1">
                                 <select class="custom-select" name="cboTipo" id="">
@@ -53,19 +53,19 @@
 
                                 </select>
                                 <select class="custom-select" name="cboTipo" id="">
-                                      <option selected>Tipo</option>
-                                        @{
-                                            IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO>;
+                                    <option selected>Tipo</option>
+                                    @{
+                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO>;
 
-                                            foreach (var oTipo in tipo)
-                                            {
-                                                <option value="@oTipo.AVISO_TIPO_NRO">@oTipo.AVISO_TIPO_DESCRIP</option>
-                                            }
+                                        foreach (var oTipo in tipo)
+                                        {
+                                            <option value="@oTipo.AVISO_TIPO_NRO">@oTipo.AVISO_TIPO_DESCRIP</option>
                                         }
-                                        
-                                 </select>
+                                    }
+
+                                </select>
                             </div>
-                            
+
                         </div>
 
 
@@ -73,28 +73,28 @@
                 </div>
                 <!--Zona 1.2 (2)-->
                 <div class="row p-2 m-1 border rounded">
-                    <div class="col-12">
+                    <div class="col-12 camposDeFiltro">
                         <p class="h5">Lista de asuntos: </p>
-                        
-                            @{int i = 1;}
-                            @foreach (var item in Model)
-                            {
-                                String j = i.ToString();
-                            
-                                
-                                    <a style="text-decoration:none" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId"+j)" href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO">
-                                        <p id="@("descripcion"+j)" class="col-5 overflow-hidden">@item.AVISO_DESCRIPCION</p>
-                                        <p class="col-7 overflow-hidden">@item.AVISO_DETALLE</p>
-                                    </a>
-                                    
-                               
-                                
-                                i++;
-                                <!--<dd><a href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO" class="btn btn-success float-right">Listar</a></dd> <!--buscar-->
-                            }
-                        
+
+                        @{int i = 1;}
+                        @foreach (var item in Model)
+                        {
+                            String j = i.ToString();
+
+
+                            <a style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId"+j)" href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO">
+                                <p id="@("descripcion"+j)" class="col-5 overflow-hidden">@item.AVISO_DESCRIPCION</p>
+                                <p class="col-7 overflow-hidden elegir">@item.AVISO_DETALLE</p>
+                            </a>
+
+
+
+                            i++;
+                            <!--<dd><a href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO" class="btn btn-success float-right">Listar</a></dd> <!--buscar-->
+                        }
+
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -120,7 +120,7 @@
                                 <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
                             }
                         }
-                        
+
 
                     </div>
                     <div class="col-12 col-md-4">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
 
-                
+
                 <!--Zona 2.2 (4)-->
                 <div class="row p-2 m-1 border rounded">
                     <div class="col">
@@ -136,7 +136,7 @@
                         <div class="row">
                             <div class="col">
                                 @{
-                                    
+
                                     if (oSP_LISTAR_AVISO.AVISO_CODIGO == 0)
                                     {
                                         <p class="lead text-center">
@@ -146,9 +146,9 @@
                                     }
                                     else
                                     {
-                                        
+
                                         <p>@oSP_LISTAR_AVISO.AVISO_DETALLE</p>
-                                        
+
                                     }
                                 }
                             </div>
@@ -162,7 +162,7 @@
                         <p class="h5 m-0">Listado de comentarios</p>
                         <div class="row">
 
-                            @{ 
+                            @{
                                 var listaComentario = ViewBag.listaComentario as IEnumerable<sistemaAvisosTSG.Models.SP_LISTAR_COMENTARIO>;
 
                                 if (!listaComentario.Any())
@@ -178,12 +178,12 @@
                                 {
                                     foreach (var oComentario in listaComentario)
                                     {
-                                    <div class="col-12 border-top mt-2 seleccion rounded">
-                                        <label class="m-0" for="comentario">@oComentario.USUARI_NOMBRES @oComentario.USUARI_APEPAT</label>
-                                        <p class="float-right m-0">@oComentario.AVISOCOM_FECHA @oComentario.AVISOCOM_HORA</p>
-                                        <textarea class="form-control w-100 col-12 mb-1" disabled name="txtComentario" id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
-                                        
-                                    </div>
+                                        <div class="col-12 border-top mt-2 seleccion rounded">
+                                            <label class="m-0" for="comentario">@oComentario.USUARI_NOMBRES @oComentario.USUARI_APEPAT</label>
+                                            <p class="float-right m-0">@oComentario.AVISOCOM_FECHA @oComentario.AVISOCOM_HORA</p>
+                                            <textarea class="form-control w-100 col-12 mb-1" disabled name="txtComentario" id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
+
+                                        </div>
                                     }
 
                                 }
@@ -201,32 +201,32 @@
 
                                 if (!listadoAdjuntos.Any())
                                 {
-                            <div class="col-12 mt-2">
-                                <p class="lead text-center">
-                                    <em>No hay data</em>
-                                    <img src="~/img/nodatafound.png" class="img-fluid" />
-                                </p>
-                            </div>
+                                    <div class="col-12 mt-2">
+                                        <p class="lead text-center">
+                                            <em>No hay data</em>
+                                            <img src="~/img/nodatafound.png" class="img-fluid" />
+                                        </p>
+                                    </div>
                                 }
                                 else
                                 {
-                            <div class="col-12 text-center pl-2 pr-2">
-                                    @foreach(var oAdjuntos in listadoAdjuntos)
-                                    {
-                                <div class="row border-top rounded seleccion py-2">
-                                    <p class="col-4 m-0">@oAdjuntos.AVISO_ARCHIVO</p>
-                                    <p class="col-8 m-0"><a href="@oAdjuntos.AVISO_RUTA">@oAdjuntos.AVISO_RUTA</a></p>
-                                </div>
+                                    <div class="col-12 text-center pl-2 pr-2">
+                                        @foreach (var oAdjuntos in listadoAdjuntos)
+                                        {
+                                            <div class="row border-top rounded seleccion py-2">
+                                                <p class="col-4 m-0">@oAdjuntos.AVISO_ARCHIVO</p>
+                                                <p class="col-8 m-0"><a href="@oAdjuntos.AVISO_RUTA">@oAdjuntos.AVISO_RUTA</a></p>
+                                            </div>
 
-                                    }
-                            </div>
+                                        }
+                                    </div>
                                 }
 
                             }
-                            
+
                         </div>
                         <!--
-                        
+
                             -->
                     </div>
                 </div>
@@ -235,19 +235,15 @@
     </div>
 
 
-
-
-
-
-    <script src="~/Scripts/funciones.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="~/Scripts/funciones.js"></script>
 
     <script>
         for (let i = 1; i <= 3; i++) {
-            $("#avisoBotonId"+i).click(function () {
-                let desc = $("#descripcion"+i).text();
+            $("#avisoBotonId" + i).click(function () {
+                let desc = $("#descripcion" + i).text();
                 console.log(desc);
             });
         }

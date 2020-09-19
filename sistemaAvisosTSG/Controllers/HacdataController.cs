@@ -11,8 +11,8 @@ namespace sistemaAvisosTSG.Controllers
 {
     public class HacdataController : Controller
     {
-        SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
         //SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
 
         public IEnumerable<TBCAS_AVISOS> listaAvisos()
         {
@@ -55,12 +55,13 @@ namespace sistemaAvisosTSG.Controllers
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                sp.USUARI_NOMBRES = dr.GetString(0);
-                sp.USUARI_APEPAT = dr.GetString(1);
-                sp.AVISO_CODIGO = dr.GetDecimal(2);
-                sp.AVISO_PUBFECHA = dr.GetString(3);
-                sp.AVISO_PUBHORA = dr.GetString(4);
-                sp.AVISO_DETALLE = dr.GetString(5);
+                sp.AVISO_CODIGO = dr.GetDecimal(0);
+                sp.EMPRESA_CODIGO = dr.GetString(1);
+                sp.USUARI_NOMBRES = dr.GetString(2);
+                sp.USUARI_APEPAT = dr.GetString(3);
+                sp.AVISO_PUBFECHA = dr.GetString(4);
+                sp.AVISO_PUBHORA = dr.GetString(5);
+                sp.AVISO_DETALLE = dr.GetString(6);
             }
 
             dr.Close(); con.Close();
