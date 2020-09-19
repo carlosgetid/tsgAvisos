@@ -114,3 +114,30 @@ INSERT INTO TBCAS_AVISO_ARCHIVO (EMPRESA_CODIGO, AVISO_CODIGO, AVISO_ARCHIVO,
 AVISO_RUTA, AVISO_SYS_EST, AVISOARCH_CODIGO, AVISOARCH_NROVECES) 
 VALUES (9999, 9999, 'Redireccion', 'https://stackoverrun.com/es/q/202', 1, 7003,0);
 go
+
+
+
+
+
+
+
+
+
+
+
+-- procedimiento para validar acceso en el login
+CREATE OR ALTER PROCEDURE SP_BUSCAR_USUARIO
+@p_usuari_codigo varchar(8),
+@p_usuari_pass varchar(10)
+AS
+BEGIN
+	SELECT USUARI_CODIGO, USUARI_PASS, USUARI_APEPAT, USUARI_APEMAT, USUARI_NOMBRES, USUARI_CORREO, USUARI_TELEFONO
+	FROM [dbo].[TBUSUARI]
+	WHERE USUARI_CODIGO = @p_usuari_codigo and USUARI_PASS = @p_usuari_pass
+END
+
+
+
+
+
+
