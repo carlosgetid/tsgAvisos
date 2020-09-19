@@ -252,6 +252,10 @@
             });
         }
     </script>
+    <script>
+        let foo = @Html.Raw(Json.Encode(Model));
+        console.log(foo[0].EMPRESA_CODIGO);
+    </script>
 </body>
                                 }
 
