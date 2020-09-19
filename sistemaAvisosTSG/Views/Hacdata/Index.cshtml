@@ -75,28 +75,31 @@
                 <div class="row p-2 m-1 border rounded">
                     <div class="col-12">
                         <p class="h5">Lista de asuntos: </p>
-                        <dl class="row d-flex">
+                        
                             @{int i = 1;}
                             @foreach (var item in Model)
                             {
                                 String j = i.ToString();
                             
-                                <div class="row w-100" id="@("avisoBotonId"+j)">
-                                    <dd id="@("descripcion"+j)" class="pt-1 col-5 overflow-hidden border-top align-items-center mt-2 ml-2">@item.AVISO_DESCRIPCION</dd>
-                                    <dd class="pt-1 col-6 overflow-hidden border-top align-items-center mt-2">@item.AVISO_DETALLE</dd>
-                                </div>
+                                
+                                    <a style="text-decoration:none" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId"+j)" href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO">
+                                        <p id="@("descripcion"+j)" class="col-5 overflow-hidden">@item.AVISO_DESCRIPCION</p>
+                                        <p class="col-7 overflow-hidden">@item.AVISO_DETALLE</p>
+                                    </a>
+                                    
+                               
                                 
                                 i++;
                                 <!--<dd><a href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO" class="btn btn-success float-right">Listar</a></dd> <!--buscar-->
                             }
-                        </dl>
+                        
                     </div>
                     
                 </div>
             </div>
 
             <!--Zona 2-->
-            <div class="col-12 col-md-8 p-0">
+            <div class="col-12 col-md-8 p-0 align-items-center">
                 <!--Zona 2.1 (3)-->
                 <div class="row p-2 m-1 border rounded">
                     <div class="col-12 col-md-8">
@@ -162,7 +165,7 @@
                             @{ 
                                 var listaComentario = ViewBag.listaComentario as IEnumerable<sistemaAvisosTSG.Models.SP_LISTAR_COMENTARIO>;
 
-                                if (listaComentario.FirstOrDefault().AVISOCOM_COMENTARIO.IsEmpty())
+                                if (!listaComentario.Any())
                                 {
                                     <div class="col-12 mt-2">
                                         <p class="lead text-center">
@@ -175,10 +178,10 @@
                                 {
                                     foreach (var oComentario in listaComentario)
                                     {
-                                    <div class="col-12 border-top mt-2">
+                                    <div class="col-12 border-top mt-2 seleccion rounded">
                                         <label class="m-0" for="comentario">@oComentario.USUARI_NOMBRES @oComentario.USUARI_APEPAT</label>
                                         <p class="float-right m-0">@oComentario.AVISOCOM_FECHA @oComentario.AVISOCOM_HORA</p>
-                                        <textarea class="form-control w-100 col-12" disabled name="txtComentario" id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
+                                        <textarea class="form-control w-100 col-12 mb-1" disabled name="txtComentario" id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
                                         
                                     </div>
                                     }
@@ -196,7 +199,7 @@
                         <div class="row">
                             @{ var listadoAdjuntos = ViewBag.listaAdjunto as IEnumerable<sistemaAvisosTSG.Models.SP_LISTAR_ADJUNTOS>;
 
-                                if (listadoAdjuntos.FirstOrDefault().AVISOARCH_CODIGO==0)
+                                if (!listadoAdjuntos.Any())
                                 {
                             <div class="col-12 mt-2">
                                 <p class="lead text-center">
@@ -207,15 +210,16 @@
                                 }
                                 else
                                 {
-                            <dl class="row text-center pl-2 pr-2">
+                            <div class="col-12 text-center pl-2 pr-2">
                                     @foreach(var oAdjuntos in listadoAdjuntos)
                                     {
-                            
-                                <dd class="col-4 border-top"><p>@oAdjuntos.AVISO_ARCHIVO</p></dd>
-                                <dd class="col-8 border-top"><a href="@oAdjuntos.AVISO_RUTA">@oAdjuntos.AVISO_RUTA</a></dd>
+                                <div class="row border-top rounded seleccion py-2">
+                                    <p class="col-4 m-0">@oAdjuntos.AVISO_ARCHIVO</p>
+                                    <p class="col-8 m-0"><a href="@oAdjuntos.AVISO_RUTA">@oAdjuntos.AVISO_RUTA</a></p>
+                                </div>
 
                                     }
-                            </dl>
+                            </div>
                                 }
 
                             }
@@ -235,7 +239,7 @@
 
 
 
-
+    <script src="~/Scripts/funciones.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

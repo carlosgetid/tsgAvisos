@@ -11,7 +11,7 @@ namespace sistemaAvisosTSG.Controllers
 {
     public class HacdataController : Controller
     {
-        SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
 
         public IEnumerable<TBCAS_AVISOS> listaAvisos()
         {
@@ -37,9 +37,14 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
-        public SP_LISTAR_AVISO listaCompleto(string empresa, int aviso)
+        public SP_LISTAR_AVISO listaCompleto(string empresa=null, int aviso=0)
         {
             SP_LISTAR_AVISO sp = new SP_LISTAR_AVISO();
+            if (empresa==null)
+            {
+                return sp;
+            }
+            
             SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
@@ -103,9 +108,13 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
-        public IEnumerable<SP_LISTAR_COMENTARIO> listaComentario(string empresa, int aviso)
+        public IEnumerable<SP_LISTAR_COMENTARIO> listaComentario(string empresa=null, int aviso=0)
         {
             List<SP_LISTAR_COMENTARIO> listadito = new List<SP_LISTAR_COMENTARIO>();
+            if (empresa==null)
+            {
+                return listadito;
+            }
             SqlCommand cmd = new SqlCommand("SP_LISTAR_COMENTARIO", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
@@ -129,9 +138,13 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
-        public IEnumerable<SP_LISTAR_ADJUNTOS> listaAdjunto(string empresa, int aviso)
+        public IEnumerable<SP_LISTAR_ADJUNTOS> listaAdjunto(string empresa=null, int aviso=0)
         {
             List<SP_LISTAR_ADJUNTOS> listadito = new List<SP_LISTAR_ADJUNTOS>();
+            if (empresa == null)
+            {
+                return listadito;
+            }
             SqlCommand cmd = new SqlCommand("SP_LISTAR_ADJUNTOS", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
@@ -156,22 +169,17 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
-
-
-        public ActionResult Index()
+        public ActionResult Index(string pEmpresa=null,int pAviso=0)
         {
-            string empresa ="9999";
-            int aviso = 9999;
-
             /*para combos*/
             ViewBag.listaTipo = listaTipo();
             ViewBag.listaEstado = listaEstado();
 
 
             /*listados*/
-            ViewBag.listaAvisos = listaCompleto(empresa, aviso);
-            ViewBag.listaComentario = listaComentario(empresa, aviso);
-            ViewBag.listaAdjunto = listaAdjunto(empresa, aviso);
+            ViewBag.listaAvisos = listaCompleto(pEmpresa, pAviso);
+            ViewBag.listaComentario = listaComentario(pEmpresa, pAviso);
+            ViewBag.listaAdjunto = listaAdjunto(pEmpresa, pAviso);
 
             /*lista principal*/
             return View(listaAvisos());
@@ -179,8 +187,7 @@ namespace sistemaAvisosTSG.Controllers
 
         public ActionResult Buscar(string empresa, int aviso)
         {
-            SP_LISTAR_AVISO sp= listaCompleto(empresa, aviso);
-            return RedirectToAction("Index", new { oSp = sp});
+            return RedirectToAction("Index", new { pEmpresa = empresa , pAviso = aviso });
         }
 
     }
