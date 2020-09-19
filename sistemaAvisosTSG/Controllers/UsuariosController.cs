@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace sistemaAvisosTSG.Controllers
 {
-    public class AvisosController : Controller
+    public class UsuariosController : Controller
     {
-        // GET: Avisos
+        // GET: Usuarios
         public ActionResult Index()
         {
             return View();
