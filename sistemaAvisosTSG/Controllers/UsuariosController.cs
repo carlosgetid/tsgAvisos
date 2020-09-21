@@ -47,17 +47,12 @@ namespace sistemaAvisosTSG.Controllers
 
             if (resultado == 1)
             {
-                System.Diagnostics.Debug.WriteLine("correctamente");
-                System.Diagnostics.Debug.WriteLine("correctamente");
-                System.Diagnostics.Debug.WriteLine("correctamente");
                 return RedirectToAction("Index", "Hacdata");
                 //return RedirectToAction("Index", "Hacdata", new { pCodigo = codigo, pPass = pass});
             }
             else { 
-                System.Diagnostics.Debug.WriteLine("datos invalidos");
-                System.Diagnostics.Debug.WriteLine("datos invalidos");
-                System.Diagnostics.Debug.WriteLine("datos invalidos");
-                return View();
+                TempData["Error"] = "Usuario y/o contraseña incorrecta";
+                return RedirectToAction("Index");
             }
         }
     }

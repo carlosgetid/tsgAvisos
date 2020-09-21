@@ -35,5 +35,11 @@
                 <input type="submit" value="Iniciar Sesión" class="btn btn-default" />
             </div>
         </div>
+        @{ 
+            if(@TempData["Error"] != null)
+            {
+                <span>@TempData["Error"]</span>
+            }
+        }
     </div>
 }
