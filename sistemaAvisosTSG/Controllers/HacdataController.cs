@@ -171,12 +171,11 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
-        public ActionResult Index(string pEmpresa=null,int pAviso=0)
+        public ActionResult Index(string pEmpresa=null,int pAviso=0,string pCodigo=null)
         {
             /*para combos*/
             ViewBag.listaTipo = listaTipo();
             ViewBag.listaEstado = listaEstado();
-
 
             /*listados*/
             ViewBag.listaAvisos = listaCompleto(pEmpresa, pAviso);
