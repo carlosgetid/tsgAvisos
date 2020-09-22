@@ -283,9 +283,20 @@
             tabla();
             //$('#table_id').DataTable();
         });
-        
+
+        var arr = ["one", "two", "three", "four", "five"];
+
         function tabla() {
-                $('#table_id').DataTable();
+            $.each(arr, function (index, item) {
+                
+                $("#table_id").append("<tr><td>" + item + "</td><td>" +
+                    item + "</td><td>" +
+                    item + "</td><td>" +
+                    item + "</td><td>" +
+                    item + "</td><td>" +
+                    item + "</td></tr>")
+            });
+            $('#table_id').DataTable();	
         }
     </script>
 
