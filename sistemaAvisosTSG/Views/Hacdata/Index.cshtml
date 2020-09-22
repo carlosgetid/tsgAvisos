@@ -264,7 +264,9 @@
     <script>
         $(document).ready(function () {
             tabla();
-            //$('#table_id').DataTable();
+            $('#table_id_filter').removeClass("dataTables_filter").addClass("d-none");
+            $('#table_id_length').removeClass("dataTables_length").addClass("d-none");
+            $('#table_id_info').removeClass("dataTables_info").addClass("d-none");
         });
 
         let arr = @Html.Raw(Json.Encode(Model));
@@ -290,11 +292,10 @@
             $('#table_id').DataTable();
         };
 
-
-
         $('#myInput').keyup(function () {
             $('#table_id').DataTable().search($(this).val()).draw();
-        })
+        });
+
 
     </script>
 
