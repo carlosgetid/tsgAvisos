@@ -16,6 +16,11 @@
 
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="estilos.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+
+    @Scripts.Render("~/bundles/jquery")
+
     <title>Consulas HACDATA</title>
 </head>
 @using (Html.BeginForm())
@@ -32,6 +37,24 @@
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
                         <input type="text" name="txtBusqueda" class="form-control busqueda" placeholder="Ingresar palabra">
+                        <table id="table_id" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Column 1</th>
+                                    <th>Column 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sxsxsxsxs</td>
+                                    <td>fgfgfg</td>
+                                </tr>
+                                <tr>
+                                    <td>zzzzzz</td>
+                                    <td>qqqqq</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="col-12 mt-1">
                         <p class="lead m-0">Filtros: </p>
@@ -254,6 +277,18 @@
         console.log(foo[0].EMPRESA_CODIGO);
         console.log(foo[0].AVISO_NRO);
     </script>
+
+    <script>
+        $(document).ready(function () {
+            tabla();
+            //$('#table_id').DataTable();
+        });
+        
+        function tabla() {
+                $('#table_id').DataTable();
+        }
+    </script>
+
 </body>
 }
 
