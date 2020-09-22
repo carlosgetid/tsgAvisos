@@ -75,6 +75,7 @@ EXECUTE SP_LISTAR_ADJUNTOS '1001',2001
 GO
 
 SELECT * FROM [dbo].[TBCAS_AVISO_ARCHIVO]
+GO
 
 CREATE OR ALTER PROCEDURE SP_LISTAR_TIPO
 AS
@@ -97,12 +98,12 @@ VALUES (9999, 9999, 1, '01-03-20', '00:00', '02-03-20', '02:00', 'Aviso de prueb
 go
 
 INSERT INTO TBCAS_AVISO_COMENTARIO (EMPRESA_CODIGO, AVISO_CODIGO, AVISOCOM_ID, AVISOCOM_USUARIO, AVISOCOM_COMENTARIO, AVISOCOM_FECHA, AVISOCOM_HORA, AVISOCOM_SYS_EST, AVISOCOM_SYS_CRE) 
-VALUES (9999, 9999, 8001, 9001, 'No me parece justo son muy buenos, etc, No me parece justo son muy buenos, etc No me parece justo son muy buenos, etc No me parece justo son muy buenos, etc'
+VALUES (9999, 9999, 8001, 9001, 'Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Ad explicabo id'
 , '17-09-20', '09:00', 1, 1)
 go
 
 INSERT INTO TBCAS_AVISO_COMENTARIO (EMPRESA_CODIGO, AVISO_CODIGO, AVISOCOM_ID, AVISOCOM_USUARIO, AVISOCOM_COMENTARIO, AVISOCOM_FECHA, AVISOCOM_HORA, AVISOCOM_SYS_EST, AVISOCOM_SYS_CRE) 
-VALUES (9999, 9999, 8003, 9001, 'no puede ser Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Ad explicabo id, error asperiores quas cupiditate illum quibusdam perferendis ipsum distinctio vero aliquid magni, eligendi dignissimos repudiandae iure nisi, pariatur eveniet! son muy buenos, etc No me parece justo son muy buenos, etc'
+VALUES (9999, 9999, 8003, 9001, ' Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Ad explicabo id, error asperiores quas cupiditate illum quibusdam perferendis ipsum distinctio vero aliquid magni, eligendi dignissimos repudiandae iure nisi, pariatur eveniet!'
 , '17-09-20', '09:00', 1, 1)
 go
 
