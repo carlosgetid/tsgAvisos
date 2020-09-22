@@ -284,25 +284,23 @@
             //$('#table_id').DataTable();
         });
 
-        var arr = ["one", "two", "three", "four", "five"];
+        let arr = @Html.Raw(Json.Encode(Model));
 
         function tabla() {
             $.each(arr, function (index, item) {
-                
+
                 $("#table_id").append(
                     `<tr>`+
-                        `<td>`
-                    + item + "</td > <td>" +
-                    item + "</td><td>" +
-                    item + "</td><td>" +
-                    item + "</td><td>" +
-                    item + "</td><td>" +
-                    item +
+                        `<td>`+
+                    `<a  style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`>` +
+                         `<p id="@("descripcion")" class="col-5 overflow-hidden">` + arr[index].AVISO_DESCRIPCION + `</p>` +
+                        `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
+                    `</a>`+
 
                         `</td >`
                     + `</tr>`)
             });
-            $('#table_id').DataTable();	
+            $('#table_id').DataTable();
         }
     </script>
 
