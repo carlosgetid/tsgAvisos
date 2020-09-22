@@ -289,12 +289,18 @@
         function tabla() {
             $.each(arr, function (index, item) {
                 
-                $("#table_id").append("<tr><td>" + item + "</td><td>" +
+                $("#table_id").append(
+                    `<tr>`+
+                        `<td>`
+                    + item + "</td > <td>" +
                     item + "</td><td>" +
                     item + "</td><td>" +
                     item + "</td><td>" +
                     item + "</td><td>" +
-                    item + "</td></tr>")
+                    item +
+
+                        `</td >`
+                    + `</tr>`)
             });
             $('#table_id').DataTable();	
         }
