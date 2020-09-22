@@ -72,7 +72,6 @@ C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\bin\System.Web.WebPages.Razo
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\bin\Newtonsoft.Json.xml
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\bin\Antlr3.Runtime.pdb
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.csprojAssemblyReference.cache
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.csproj.CoreCompileInputs.cache
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.csproj.CopyComplete
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.dll
@@ -156,3 +155,4 @@ C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.
 C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.csproj.CopyComplete
 C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.dll
 C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.pdb
+C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.csprojAssemblyReference.cache
