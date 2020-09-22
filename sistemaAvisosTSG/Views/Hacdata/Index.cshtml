@@ -37,24 +37,7 @@
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
                         <input type="text" name="txtBusqueda" class="form-control busqueda" placeholder="Ingresar palabra">
-                        <table id="table_id" class="display">
-                            <thead>
-                                <tr>
-                                    <th>Column 1</th>
-                                    <th>Column 2</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>sxsxsxsxs</td>
-                                    <td>fgfgfg</td>
-                                </tr>
-                                <tr>
-                                    <td>zzzzzz</td>
-                                    <td>qqqqq</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        
                     </div>
                     <div class="col-12 mt-1">
                         <p class="lead m-0">Filtros: </p>
@@ -100,21 +83,21 @@
                         <p class="h5">Lista de asuntos: </p>
 
                         @{int i = 1;}
-                        @foreach (var item in Model)
-                        {
-                            String j = i.ToString();
-
-
-                            <a style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId"+j)" href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO">
-                                <p id="@("descripcion"+j)" class="col-5 overflow-hidden">@item.AVISO_DESCRIPCION</p>
-                                <p class="col-7 overflow-hidden elegir">@item.AVISO_DETALLE</p>
-                            </a>
-
-
-
-                            i++;
-                            <!--<dd><a href="~/Hacdata/Buscar?empresa=@item.EMPRESA_CODIGO&aviso=@item.AVISO_NRO" class="btn btn-success float-right">Listar</a></dd> <!--buscar-->
-                        }
+      
+                        <table id="table_id" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Descripcion</th>
+                                    @*columna oculta, no borrar, permite filtrar por detalle*@
+                                    <th class="d-none">Column 2</th>
+                                </tr>
+                            </thead>
+                            
+                            @*etiquetas innecesarias pero que permiten el funcionamiento correcto*@
+                            <tbody>
+                            </tbody>
+                        
+                        </table>
 
                     </div>
 
@@ -292,12 +275,16 @@
                 $("#table_id").append(
                     `<tr>`+
                         `<td>`+
-                    `<a  style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`>` +
-                         `<p id="@("descripcion")" class="col-5 overflow-hidden">` + arr[index].AVISO_DESCRIPCION + `</p>` +
-                        `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
-                    `</a>`+
+                             `<a  style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`>` +
+                                 `<p id="@("descripcion")" class="col-5 overflow-hidden">` + arr[index].AVISO_DESCRIPCION + `</p>` +
+                              `</a>`+
+                    `</td >`+
+                    `<td class="d-none">`+
+                             `<a  style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`>` +
+                                 `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
+                              `</a>`+
+                        `</td >`+
 
-                        `</td >`
                     + `</tr>`)
             });
             $('#table_id').DataTable();
