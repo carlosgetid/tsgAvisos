@@ -11,8 +11,8 @@ namespace sistemaAvisosTSG.Controllers
 {
     public class HacdataController : Controller
     {
-        //SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
-        SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        //SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
 
         public IEnumerable<TBCAS_AVISOS> listaAvisos()
         {
@@ -30,6 +30,10 @@ namespace sistemaAvisosTSG.Controllers
                 ta.AVISO_NRO = dr.GetDecimal(1);
                 ta.AVISO_DESCRIPCION = dr.GetString(2);
                 ta.AVISO_DETALLE = dr.GetString(3);
+                ta.AVISO_PUBFECHA = dr.GetString(4);
+                ta.AVISO_PUBHORA = dr.GetString(5);
+                ta.AVISO_ESTADO_DESCRIP = dr.GetString(6);
+                ta.AVISO_TIPO_DESCRIP = dr.GetString(7);
 
                 listadito.Add(ta);
             }
@@ -46,7 +50,7 @@ namespace sistemaAvisosTSG.Controllers
                 return sp;
             }
             
-            SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO", con);
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO_COMPLETO", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
             cmd.Parameters.AddWithValue("@aviso_numero", aviso);
@@ -68,9 +72,9 @@ namespace sistemaAvisosTSG.Controllers
             return sp;
         }
 
-        public IEnumerable<TBCAS_AVISOS_TIPO> listaTipo()
+        public IEnumerable<TBCAS_AVISOS> listaTipo()
         {
-            List<TBCAS_AVISOS_TIPO> listadito = new List<TBCAS_AVISOS_TIPO>();
+            List<TBCAS_AVISOS> listadito = new List<TBCAS_AVISOS>();
             SqlCommand cmd = new SqlCommand("SP_LISTAR_TIPO", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -79,7 +83,7 @@ namespace sistemaAvisosTSG.Controllers
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                TBCAS_AVISOS_TIPO ta = new TBCAS_AVISOS_TIPO();
+                TBCAS_AVISOS ta = new TBCAS_AVISOS();
                 ta.AVISO_TIPO_DESCRIP = dr.GetString(0);
                 ta.AVISO_TIPO_NRO = dr.GetDecimal(1);
                 listadito.Add(ta);
@@ -89,9 +93,9 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
-        public IEnumerable<TBCAS_AVISOS_ESTADO> listaEstado()
+        public IEnumerable<TBCAS_AVISOS> listaEstado()
         {
-            List<TBCAS_AVISOS_ESTADO> listadito = new List<TBCAS_AVISOS_ESTADO>();
+            List<TBCAS_AVISOS> listadito = new List<TBCAS_AVISOS>();
             SqlCommand cmd = new SqlCommand("SP_LISTAR_ESTADO", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -100,9 +104,9 @@ namespace sistemaAvisosTSG.Controllers
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                TBCAS_AVISOS_ESTADO ta = new TBCAS_AVISOS_ESTADO();
+                TBCAS_AVISOS ta = new TBCAS_AVISOS();
                 ta.AVISO_ESTADO_DESCRIP = dr.GetString(0);
-                ta.AVISO_ESTADO_NRO = dr.GetString(1);
+                ta.AVISO_SYS_EST = dr.GetString(1);
                 listadito.Add(ta);
             }
 

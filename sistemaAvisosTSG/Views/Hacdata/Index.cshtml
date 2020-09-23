@@ -41,18 +41,23 @@
                     <div class="col-12 mt-1">
                         <p class="lead m-0">Filtros: </p>
                         <div class="row">
+                            Fecha inicio
                             <div class="col-12 mb-1">
-                                <input class="w-100" type="date" name="dtFecha" />
+                                <input class="w-100" type="date" name="dtFechaInicio" />
+                            </div>
+                            Fecha fin
+                            <div class="col-12 mb-1">
+                                <input class="w-100" type="date" name="dtFechaFin" />
                             </div>
                             <div class="col-12 mb-1">
                                 <select class="custom-select" name="cboTipo" id="">
                                     <option selected>Estado</option>
                                     @{
-                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_ESTADO> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_ESTADO>;
+                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
 
                                         foreach (var oEstado in estado)
                                         {
-                                            <option value="@oEstado.AVISO_ESTADO_NRO">@oEstado.AVISO_ESTADO_DESCRIP</option>
+                                            <option value="@oEstado.AVISO_SYS_EST">@oEstado.AVISO_ESTADO_DESCRIP</option>
                                         }
                                     }
 
@@ -60,7 +65,7 @@
                                 <select class="custom-select" name="cboTipo" id="">
                                     <option selected>Tipo</option>
                                     @{
-                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO>;
+                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
 
                                         foreach (var oTipo in tipo)
                                         {
@@ -147,7 +152,7 @@
                                                 @Html.ActionLink("Publicar", "crearComentario", new {
                                                EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
                                                AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
-                                               AVISOCOM_COMENTARIO = txtComentario.value,
+                                               //AVISOCOM_COMENTARIO = txtComentario.value,
                                                AVISOCOM_USUARIO = ViewBag.codigoUser
                                            })
                                             </p>
@@ -310,6 +315,11 @@
                     `<td class="d-none">`+
                     `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                                  `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBFECHA+`</p >`+
                               `</a>`+
                         `</td >`+
 
