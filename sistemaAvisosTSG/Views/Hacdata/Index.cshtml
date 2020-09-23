@@ -50,7 +50,7 @@
                                 <input class="w-100" type="date" name="dtFechaFin" />
                             </div>
                             <div class="col-12 mb-1">
-                                <select class="custom-select" name="cboTipo" id="">
+                                <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrar(this)">
                                     <option selected>Estado</option>
                                     @{
                                         IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
@@ -62,7 +62,7 @@
                                     }
 
                                 </select>
-                                <select class="custom-select" name="cboTipo" id="">
+                                <select class="custom-select" name="cboTipo" id="cboTipoId" onchange="filtrar(this)">
                                     <option selected>Tipo</option>
                                     @{
                                         IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
@@ -344,6 +344,22 @@
         $('#buscador').keyup(function () {
             $('#table_id').DataTable().search($(this).val()).draw();
         });
+
+        let acumulador = "";
+        let estado = "";
+        let tipo = "";
+
+        function filtrar(index) {
+            let descripcion = index.options[index.selectedIndex].text;
+            if (descripcion === "Estado" || descripcion === "Tipo")
+                $('#table_id').DataTable().search("").draw();
+            else {
+                acumulador = estado + " " + tipo;
+
+                $('#table_id').DataTable().search(acumulador).draw();
+                console.log(acumulador);
+            }
+        }
 
 
     </script>
