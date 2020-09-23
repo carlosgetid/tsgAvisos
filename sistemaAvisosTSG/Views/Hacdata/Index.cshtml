@@ -50,7 +50,7 @@
                                 <input class="w-100" type="date" name="dtFechaFin" />
                             </div>
                             <div class="col-12 mb-1">
-                                <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrar(this)">
+                                <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrarEstado(this)">
                                     <option selected>Estado</option>
                                     @{
                                         IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
@@ -62,7 +62,7 @@
                                     }
 
                                 </select>
-                                <select class="custom-select" name="cboTipo" id="cboTipoId" onchange="filtrar(this)">
+                                <select class="custom-select" name="cboTipo" id="cboTipoId" onchange="filtrarTipo(this)">
                                     <option selected>Tipo</option>
                                     @{
                                         IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
@@ -349,16 +349,28 @@
         let estado = "";
         let tipo = "";
 
-        function filtrar(index) {
+        function filtrarEstado(index) {
             let descripcion = index.options[index.selectedIndex].text;
-            if (descripcion === "Estado" || descripcion === "Tipo")
-                $('#table_id').DataTable().search("").draw();
-            else {
+            if (descripcion === "Estado")
+                estado = "";
+            else 
+                estado = descripcion;
+            
                 acumulador = estado + " " + tipo;
 
                 $('#table_id').DataTable().search(acumulador).draw();
-                console.log(acumulador);
-            }
+        }
+
+        function filtrarTipo(index) {
+            let descripcion = index.options[index.selectedIndex].text;
+            if (descripcion === "Tipo")
+                tipo = "";
+            else 
+                tipo = descripcion;
+            
+                acumulador = estado + " " + tipo;
+
+                $('#table_id').DataTable().search(acumulador).draw();
         }
 
 
