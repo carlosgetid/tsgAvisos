@@ -15,8 +15,6 @@ BEGIN
 END
 GO
 
-exec sp_columns [TBCAS_AVISOS]
-
 --select cast(@dt as datetime2(7));
 
 --CREATE OR ALTER PROCEDURE SP_BUSQUEDA

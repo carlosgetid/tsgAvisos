@@ -35,7 +35,7 @@
                         <label class="h5 m-0" for="busqueda">Busqueda: </label>
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
-                        <input type="text" id="myInput" placeholder="">
+                        <input type="text" id="buscador" placeholder="">
                         
                     </div>
                     <div class="col-12 mt-1">
@@ -93,6 +93,9 @@
                                 <tr>
                                     <th>Descripcion</th>
                                     @*columna oculta, no borrar, permite filtrar por detalle*@
+                                    <th class="d-none">Column 2</th>
+                                    <th class="d-none">Column 2</th>
+                                    <th class="d-none">Column 2</th>
                                     <th class="d-none">Column 2</th>
                                 </tr>
                             </thead>
@@ -317,9 +320,19 @@
                                  `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
                               `</a>`+
                     `</td >` +
-                    `<td class="">`+
+                    `<td class="d-none">`+
                     `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBFECHA+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
                               `</a>`+
                         `</td >`+
 
@@ -328,7 +341,7 @@
             $('#table_id').DataTable();
         };
 
-        $('#myInput').keyup(function () {
+        $('#buscador').keyup(function () {
             $('#table_id').DataTable().search($(this).val()).draw();
         });
 
