@@ -9,7 +9,7 @@ namespace sistemaAvisosTSG.Models
     {
         public string EMPRESA_CODIGO { get; set; }
 
-        public string AVISO_CODIGO { get; set; }
+        public decimal AVISO_CODIGO { get; set; }
 
         public int AVISOCOM_ID { get; set; }
 

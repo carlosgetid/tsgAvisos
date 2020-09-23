@@ -64,34 +64,26 @@ GO
 CREATE OR ALTER PROCEDURE SP_NUEVO_COMENTARIO
 @id_empresa varchar(4),
 @id_aviso numeric(18,0),
-@id_comentario numeric(18,0),
 @id_usuario varchar(8),
-@AVISOCOM_COMENTARIO varchar(5000),
-@AVISOCOM_SYS_EST varchar(1),
-@AVISOCOM_SYS_CRE varchar(20) 
+@AVISOCOM_COMENTARIO varchar(5000)
 AS
+DECLARE @vIdComentario decimal
 BEGIN
+	
+	
+	SELECT TOP(1) @vIdComentario=AVISOCOM_ID FROM TBCAS_AVISO_COMENTARIO
+	WHERE EMPRESA_CODIGO=@id_empresa AND AVISO_CODIGO=@id_aviso AND AVISOCOM_USUARIO=@id_usuario
+	ORDER BY AVISOCOM_ID DESC
+	
+	SET @vIdComentario=@vIdComentario+1
+
 	INSERT INTO TBCAS_AVISO_COMENTARIO
-	VALUES (@id_empresa, @id_aviso, @id_comentario, @id_usuario, 
-	@AVISOCOM_COMENTARIO, FORMAT(GETDATE(), 'ddMMyyyy'), FORMAT(GETDATE(), 'hh:mm'), @AVISOCOM_SYS_EST, @AVISOCOM_SYS_CRE)
+	VALUES (@id_empresa, @id_aviso, @vIdComentario, @id_usuario, 
+	@AVISOCOM_COMENTARIO, FORMAT(GETDATE(), 'ddMMyyyy'), FORMAT(GETDATE(), 'hh:mm'), null, null)
 END
 GO
 
-<<<<<<< HEAD
-=======
 
-
-EXECUTE SP_LISTAR_ADJUNTOS '1001',2001
-GO
-
-SELECT * FROM [dbo].[TBCAS_AVISO_ARCHIVO]
-<<<<<<< HEAD
-GO
-=======
-go
->>>>>>> b325a01ccfe90017e0f6e3fc165ff87ee70ad37f
-
->>>>>>> 7a745430f46f69762791f4b6ca7ff62b867ac68c
 CREATE OR ALTER PROCEDURE SP_LISTAR_TIPO
 AS
 BEGIN
@@ -106,44 +98,7 @@ BEGIN
 END
 GO
 
-<<<<<<< HEAD
-=======
-INSERT INTO TBCAS_AVISOS (EMPRESA_CODIGO, AVISO_CODIGO, AVISO_TIPO_NRO, 
-AVISO_REGFECHA, AVISO_REGHORA, AVISO_PUBFECHA, AVISO_PUBHORA, AVISO_DESCRIPCION, AVISO_SYS_EST, AVISO_DETALLE) 
-VALUES (9999, 9999, 1, '01-03-20', '00:00', '02-03-20', '02:00', 'Aviso de prueba', 1, 
-'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ullam, porro voluptate magnam accusantium itaque, est! Amet laborum fuga numquam atque id minus eveniet dolorum, culpa harum aperiam at vitae.');
-go
 
-INSERT INTO TBCAS_AVISO_COMENTARIO (EMPRESA_CODIGO, AVISO_CODIGO, AVISOCOM_ID, AVISOCOM_USUARIO, AVISOCOM_COMENTARIO, AVISOCOM_FECHA, AVISOCOM_HORA, AVISOCOM_SYS_EST, AVISOCOM_SYS_CRE) 
-VALUES (9999, 9999, 8001, 9001, 'Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Ad explicabo id'
-, '17-09-20', '09:00', 1, 1)
-go
-
-INSERT INTO TBCAS_AVISO_COMENTARIO (EMPRESA_CODIGO, AVISO_CODIGO, AVISOCOM_ID, AVISOCOM_USUARIO, AVISOCOM_COMENTARIO, AVISOCOM_FECHA, AVISOCOM_HORA, AVISOCOM_SYS_EST, AVISOCOM_SYS_CRE) 
-VALUES (9999, 9999, 8003, 9001, ' Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Ad explicabo id, error asperiores quas cupiditate illum quibusdam perferendis ipsum distinctio vero aliquid magni, eligendi dignissimos repudiandae iure nisi, pariatur eveniet!'
-, '17-09-20', '09:00', 1, 1)
-go
-
-INSERT INTO TBCAS_AVISOS_PUBLICA (EMPRESA_CODIGO, USUARI_CODIGO, AVISO_CODIGO, /*sirve para gestionar usuario que visitan avisos*/
- AVISO_PUBLICA_ESTADO_ID, CANTIDAD) VALUES (9999, 9002, 9999, 1, 0)
- go
-
-INSERT INTO TBCAS_AVISO_ARCHIVO (EMPRESA_CODIGO, AVISO_CODIGO, AVISO_ARCHIVO, 
-AVISO_RUTA, AVISO_SYS_EST, AVISOARCH_CODIGO, AVISOARCH_NROVECES) 
-VALUES (9999, 9999, 'Redireccion', 'https://stackoverrun.com/es/q/202', 1, 7003,0);
-go
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 7a745430f46f69762791f4b6ca7ff62b867ac68c
 -- procedimiento para validar acceso en el login
 CREATE OR ALTER PROCEDURE SP_BUSCAR_USUARIO
 @p_usuari_codigo varchar(8),

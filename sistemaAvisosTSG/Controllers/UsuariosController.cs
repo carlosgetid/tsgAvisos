@@ -47,7 +47,7 @@ namespace sistemaAvisosTSG.Controllers
 
             if (resultado == 1)
             {
-                return RedirectToAction("Index", "Hacdata", new { pCodigo = codigo });
+                return RedirectToAction("Index", "Hacdata", new { pHtmlCodigo = codigo });
                 //return RedirectToAction("Index", "Hacdata", new { pCodigo = codigo});
             }
             else { 

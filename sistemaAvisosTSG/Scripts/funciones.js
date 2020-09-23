@@ -9,16 +9,18 @@ $(document).ready(function () {
 
     $('.control > p').on('click', function () {
         $('.control > textarea').toggleClass('d-inline-block');
+        $('.control > div > .d-inline-block').removeClass('d-inline-block').addClass("d-none");     
+        
     });
 
     $('.control > textarea').on('keyup', function () {
         var valor = $(this).val();
         
         if (valor.length >= 5) {
-            $(".control > button").addClass('d-inline-block');
+            $(".control > div > p").addClass('d-inline-block');
 
         } else {
-            $(".control > button").removeClass('d-inline-block');
+            $(".control > div> p").removeClass('d-inline-block');
         }
         
     });

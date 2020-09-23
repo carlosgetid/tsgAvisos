@@ -11,8 +11,8 @@ namespace sistemaAvisosTSG.Controllers
 {
     public class HacdataController : Controller
     {
-        SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
-        //SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        //SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
 
         public IEnumerable<TBCAS_AVISOS> listaAvisos()
         {
@@ -171,11 +171,14 @@ namespace sistemaAvisosTSG.Controllers
             return listadito;
         }
 
-        public ActionResult Index(string pEmpresa=null,int pAviso=0,string pCodigo=null)
+        public ActionResult Index(string pEmpresa=null,int pAviso=0,string pHtmlCodigo = null,string pMensaje=null)
         {
             /*para combos*/
             ViewBag.listaTipo = listaTipo();
             ViewBag.listaEstado = listaEstado();
+
+            /*Usuario*/
+            ViewBag.codigoUser = pHtmlCodigo;
 
             /*listados*/
             ViewBag.listaAvisos = listaCompleto(pEmpresa, pAviso);
@@ -186,9 +189,30 @@ namespace sistemaAvisosTSG.Controllers
             return View(listaAvisos());
         }
 
-        public ActionResult Buscar(string empresa, int aviso)
+        public ActionResult Buscar(string empresa, int aviso, string pCodigo = null)
         {
-            return RedirectToAction("Index", new { pEmpresa = empresa , pAviso = aviso });
+            return RedirectToAction("Index", new { pEmpresa = empresa , pAviso = aviso , pHtmlCodigo = pCodigo });
+        }
+
+        public ActionResult crearComentario(TBCAS_AVISO_COMENTARIO oComentario)
+        {
+            string mensaje = "Registo exitoso";
+            SqlCommand cmd = new SqlCommand("SP_NUEVO_COMENTARIO", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id_empresa", oComentario.EMPRESA_CODIGO);
+            cmd.Parameters.AddWithValue("@id_aviso", oComentario.AVISO_CODIGO);
+            cmd.Parameters.AddWithValue("@id_usuario", oComentario.AVISOCOM_USUARIO);
+            cmd.Parameters.AddWithValue("@AVISOCOM_COMENTARIO", oComentario.AVISOCOM_COMENTARIO);
+
+            con.Open();
+
+            int ok=cmd.ExecuteNonQuery();
+
+            if (ok == 0)
+            {
+                mensaje = "No registrado";
+            }
+            return RedirectToAction("Index", new { pEmpresa = oComentario.EMPRESA_CODIGO, pAviso = oComentario.AVISO_CODIGO, pMensaje=mensaje, pHtmlCodigo = oComentario.AVISOCOM_USUARIO });
         }
 
     }
