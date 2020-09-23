@@ -23,8 +23,7 @@
 
     <title>Consulas HACDATA</title>
 </head>
-@using (Html.BeginForm())
-{
+
 <body class="text-white">
     <div class="container contenedor">
         <div class="row mt-4 border rounded border-white">
@@ -79,12 +78,12 @@
                 </div>
                 <!--Zona 1.2 (2)-->
                 <div class="row p-2 m-1 border rounded">
-                    <div class="col-12 camposDeFiltro">
+                    <div class="col-12 camposDeFiltro overflow-hidden">
                         <p class="h5">Lista de asuntos: </p>
 
                         @{int i = 1;}
       
-                        <table id="table_id" class="display">
+                        <table id="table_id" class="display text-center">
                             <thead>
                                 <tr>
                                     <th>Descripcion</th>
@@ -111,38 +110,56 @@
                     <div class="col-12 col-md-12">
                         <h6 class="d-inline-block m-0">Asunto</h6>
                         <div class="row">
-                        @{
-                            var oSP_LISTAR_AVISO = ViewBag.listaAvisos as sistemaAvisosTSG.Models.SP_LISTAR_AVISO;
-                            if (oSP_LISTAR_AVISO.AVISO_CODIGO == 0)
-                            {
-                            <div class="col">
-                                <p class="lead text-center">
-                                    <em>No hay data</em>
-                                    <img src="~/img/nodatafound.png" class="img-fluid" />
-                                </p>
-                            </div>
-                            }
-                            else
-                            {
-                                <div class="col-12 col-md-6 text-center">
-                                    <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
-                                    <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
+                            @{ 
+
+
+                                        var oSP_LISTAR_AVISO = ViewBag.listaAvisos as sistemaAvisosTSG.Models.SP_LISTAR_AVISO;
+                                        sistemaAvisosTSG.Models.TBCAS_AVISO_COMENTARIO oComentario_ = new sistemaAvisosTSG.Models.TBCAS_AVISO_COMENTARIO();
+
+                                        oComentario_.EMPRESA_CODIGO=oSP_LISTAR_AVISO.EMPRESA_CODIGO;
+                                        oComentario_.AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO;
+                                        oComentario_.AVISOCOM_COMENTARIO = Request.Form["txtComentario"];
+                                        oComentario_.AVISOCOM_USUARIO = ViewBag.codigoUser;
+
+                                        if (oSP_LISTAR_AVISO.AVISO_CODIGO == 0)
+                                        {
+                                <div class="col">
+                                    <p class="lead text-center">
+                                        <em>No hay data</em>
+                                        <img src="~/img/nodatafound.png" class="img-fluid" />
+                                    </p>
                                 </div>
-                                <div class="col-12 col-md-6 text-center control">
-                                    <p class="m-0 d-block btn btn-success">Realizar comentario</p>
-                                    <textarea class="w-100 mt-1 d-none"></textarea>
-                                    <button class="float-right btn-success d-none">Ok</button>
-                                </div>
+                                }
+                                else
+                                {
+                                    <div class="col-12 col-md-6 text-center">
+                                        <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
+                                        <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 text-center control">
+                                        <p class="m-0 d-block btn btn-success">Realizar comentario</p>
+
+                                        <textarea class="m-0 w-100 mt-1 d-none" runat="server" name="txtComentario" id="txtComentario"></textarea>
+                                        <div>
+
+                                            <p class="m-0 float-right btn btn-primary d-none">
+                                                @Html.ActionLink("Publicar", "crearComentario", new {
+                                               EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
+                                               AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
+                                               AVISOCOM_COMENTARIO = txtComentario.value,
+                                               AVISOCOM_USUARIO = ViewBag.codigoUser
+                                           })
+                                            </p>
+                                            
+                                        </div>
+
+                                    </div>
+                                }
                             }
-                        }</div>
-                    </div>
-
-
-                    
-
-
+                        </div>
+                    </div>      
                 </div>
-
 
                 <!--Zona 2.2 (4)-->
                 <div class="row p-2 m-1 border rounded">
@@ -196,7 +213,7 @@
                                         <div class="col-12 border-top mt-2 seleccion rounded">
                                             <label class="m-0" for="comentario">@oComentario.USUARI_NOMBRES @oComentario.USUARI_APEPAT</label>
                                             <p class="float-right m-0">@oComentario.AVISOCOM_FECHA @oComentario.AVISOCOM_HORA</p>
-                                            <textarea class="form-control w-100 col-12 mb-1" disabled name="txtComentario" id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
+                                            <textarea class="form-control w-100 col-12 mb-1" disabled id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
 
                                         </div>
                                     }
@@ -285,13 +302,13 @@
 
                 $("#table_id").append(
                     `<tr>`+
-                        `<td>`+
-                             `<a  style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`>` +
-                                 `<p id="@("descripcion")" class="col-5 overflow-hidden">` + arr[index].AVISO_DESCRIPCION + `</p>` +
+                        `<td class="text-center w-100">`+
+                             `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`&pCodigo=@ViewBag.codigoUser>` +
+                                 `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
                               `</a>`+
                     `</td >`+
                     `<td class="d-none">`+
-                             `<a  style="text-decoration:none" value="@i" class="text-white row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                                  `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
                               `</a>`+
                         `</td >`+
@@ -309,7 +326,6 @@
     </script>
 
 </body>
-}
 
 </html>
 
