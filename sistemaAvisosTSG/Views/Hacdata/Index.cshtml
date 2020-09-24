@@ -24,7 +24,7 @@
     <title>Consulas HACDATA</title>
 </head>
 
-<body class="text-white">
+<body class="text-white" style="background-color: #ced4da">
     <div class="container contenedor">
         <div class="row mt-4 border rounded border-white">
             <!--Zona 1-->
@@ -35,19 +35,25 @@
                         <label class="h5 m-0" for="busqueda">Busqueda: </label>
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
-                        <input type="text" id="buscador" placeholder="">
+                        <input type="text" class="form-control" id="buscador" placeholder="Insertar palabra de busqueda">
                         
                     </div>
                     <div class="col-12 mt-1">
                         <p class="lead m-0">Filtros: </p>
                         <div class="row">
-                            Fecha inicio
-                            <div class="col-12 mb-1">
-                                <input class="w-100" type="date" name="dtFechaInicio" />
+                            <div class="col-12">
+                                <em class="m-0">Fecha inicio </em>
                             </div>
-                            Fecha fin
+                           
                             <div class="col-12 mb-1">
-                                <input class="w-100" type="date" name="dtFechaFin" />
+                                <input class="form-control w-100" type="date" name="dtFechaInicio" />
+                            </div>
+                            <div class="col-12">
+                                <em class="m-0">Fecha fin </em>
+                            </div>
+                            
+                            <div class="col-12 mb-1">
+                                <input class="form-control w-100" type="date" name="dtFechaFin" />
                             </div>
                             <div class="col-12 mb-1">
                                 <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrarEstado(this)">
@@ -85,26 +91,30 @@
                 <div class="row p-2 m-1 border rounded">
                     <div class="col-12 camposDeFiltro overflow-hidden">
                         <p class="h5">Lista de asuntos: </p>
+                        
+                        <div class="row row-table color rounded">
+                            <table id="table_id" class="col-12 display text-center border-0 w-100 overflow-hidden">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-dark">Descripcion</th>
+                                        @*columna oculta, no borrar, permite filtrar por detalle*@
+                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 2</th>
+                                    </tr>
+                                </thead>
+
+                                @*etiquetas innecesarias pero que permiten el funcionamiento correcto*@
+                                <tbody></tbody>
+
+                            </table>
+                        </div>
+                        
 
                         @{int i = 1;}
       
-                        <table id="table_id" class="display text-center">
-                            <thead>
-                                <tr>
-                                    <th>Descripcion</th>
-                                    @*columna oculta, no borrar, permite filtrar por detalle*@
-                                    <th class="d-none">Column 2</th>
-                                    <th class="d-none">Column 2</th>
-                                    <th class="d-none">Column 2</th>
-                                    <th class="d-none">Column 2</th>
-                                </tr>
-                            </thead>
-                            
-                            @*etiquetas innecesarias pero que permiten el funcionamiento correcto*@
-                            <tbody>
-                            </tbody>
                         
-                        </table>
 
                     </div>
 
@@ -293,6 +303,7 @@
             $('#table_id_filter').removeClass("dataTables_filter").addClass("d-none");
             $('#table_id_length').removeClass("dataTables_length").addClass("d-none");
             $('#table_id_info').removeClass("dataTables_info").addClass("d-none");
+            $('.row-table > #table_id_wrapper').addClass("w-100");
         });
 
         let arr = @Html.Raw(Json.Encode(Model));
@@ -303,27 +314,27 @@
                 $("#table_id").append(
                     `<tr>`+
                         `<td class="text-center w-100">`+
-                             `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`&pCodigo=@ViewBag.codigoUser>` +
+                             `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`&pCodigo=@ViewBag.codigoUser>` +
                                  `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
                               `</a>`+
                     `</td >`+
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                                  `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
                               `</a>`+
                     `</td >` +
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBFECHA+`</p >`+
                               `</a>`+
                     `</td >` +
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP+`</p >`+
                               `</a>`+
                     `</td >` +
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
                               `</a>`+
                         `</td >`+

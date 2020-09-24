@@ -193,11 +193,13 @@ namespace sistemaAvisosTSG.Controllers
             return View(listaAvisos());
         }
 
+        
         public ActionResult Buscar(string empresa, int aviso, string pCodigo = null)
         {
             return RedirectToAction("Index", new { pEmpresa = empresa , pAviso = aviso , pHtmlCodigo = pCodigo });
         }
 
+        
         public ActionResult crearComentario(TBCAS_AVISO_COMENTARIO oComentario)
         {
             string mensaje = "Registo exitoso";
