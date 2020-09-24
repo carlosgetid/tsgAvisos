@@ -5,8 +5,10 @@ using System.Web;
 
 namespace sistemaAvisosTSG.Models
 {
-    public partial class TBCAS_AVISOS
+    public class TBCAS_AVISOS_ESTADO
     {
+        public string AVISO_ESTADO_NRO { get; set; }
+
         public string AVISO_ESTADO_DESCRIP { get; set; }
     }
 }
