@@ -46,7 +46,7 @@ namespace sistemaAvisosTSG.Controllers
                 return sp;
             }
             
-            SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO", con);
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO_COMPLETO", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
             cmd.Parameters.AddWithValue("@aviso_numero", aviso);

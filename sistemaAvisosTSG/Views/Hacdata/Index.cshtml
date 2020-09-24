@@ -110,54 +110,48 @@
                     <div class="col-12 col-md-12">
                         <h6 class="d-inline-block m-0">Asunto</h6>
                         <div class="row">
-                            @{ 
 
+                            @{
 
-                                        var oSP_LISTAR_AVISO = ViewBag.listaAvisos as sistemaAvisosTSG.Models.SP_LISTAR_AVISO;
-                                        sistemaAvisosTSG.Models.TBCAS_AVISO_COMENTARIO oComentario_ = new sistemaAvisosTSG.Models.TBCAS_AVISO_COMENTARIO();
+                                var oSP_LISTAR_AVISO = ViewBag.listaAvisos as sistemaAvisosTSG.Models.SP_LISTAR_AVISO;
 
-                                        oComentario_.EMPRESA_CODIGO=oSP_LISTAR_AVISO.EMPRESA_CODIGO;
-                                        oComentario_.AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO;
-                                        oComentario_.AVISOCOM_COMENTARIO = Request.Form["txtComentario"];
-                                        oComentario_.AVISOCOM_USUARIO = ViewBag.codigoUser;
-
-                                        if (oSP_LISTAR_AVISO.AVISO_CODIGO == 0)
-                                        {
-                                <div class="col">
-                                    <p class="lead text-center">
-                                        <em>No hay data</em>
-                                        <img src="~/img/nodatafound.png" class="img-fluid" />
-                                    </p>
-                                </div>
+                                if (oSP_LISTAR_AVISO.AVISO_CODIGO == 0)
+                                {
+                                    <div class="col">
+                                        <p class="lead text-center">
+                                            <em>No hay data</em>
+                                            <img src="~/img/nodatafound.png" class="img-fluid" />
+                                        </p>
+                                    </div>
                                 }
                                 else
                                 {
-                                    <div class="col-12 col-md-6 text-center">
-                                        <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
-                                        <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
-                                    </div>
-
-                                    <div class="col-12 col-md-6 text-center control">
-                                        <p class="m-0 d-block btn btn-success">Realizar comentario</p>
-
-                                        <textarea class="m-0 w-100 mt-1 d-none" runat="server" name="txtComentario" id="txtComentario"></textarea>
-                                        <div>
-
-                                            <p class="m-0 float-right btn btn-primary d-none">
-                                                @Html.ActionLink("Publicar", "crearComentario", new {
-                                               EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
-                                               AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
-                                               AVISOCOM_COMENTARIO = txtComentario.value,
-                                               AVISOCOM_USUARIO = ViewBag.codigoUser
-                                           })
-                                            </p>
-                                            
+                                    
+                                        <div class="col-12 col-md-6 text-center">
+                                            <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
+                                            <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
                                         </div>
+                                        <div class="col-12 col-md-6 text-center control">
+                                            <p class="m-0 d-block btn btn-success">Realizar comentario</p>
+                                            
+                                            <textarea class="m-0 w-100 mt-1 d-none txtComentario"></textarea>
 
-                                    </div>
+                                            <div>
+                                                <a class="m-0 float-right btn btn-primary d-none btnPublicar" 
+                                                   href="@Url.Action("crearComentario","Hacdata",new {
+                                                        EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
+                                                        AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
+                                                        AVISOCOM_USUARIO = ViewBag.codigoUser,
+                                                        AVISOCOM_COMENTARIO="xxxx"
+                                                    })">
+                                                    Publicar
+                                                </a>                                           
+                                            </div>
+                                        </div>
+                                       
                                 }
-                            }
-                        </div>
+                               }
+                            </div>
                     </div>      
                 </div>
 
@@ -282,9 +276,7 @@
     </script>
     <script>
         let foo = @Html.Raw(Json.Encode(Model));
-        console.log(foo[0]);
-        console.log(foo[0].EMPRESA_CODIGO);
-        console.log(foo[0].AVISO_NRO);
+        
     </script>
 
     <script>
