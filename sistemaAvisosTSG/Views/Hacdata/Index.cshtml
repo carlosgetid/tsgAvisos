@@ -35,32 +35,37 @@
                         <label class="h5 m-0" for="busqueda">Busqueda: </label>
                     </div>
                     <div class="col-12 overflow-hidden mb-1">
-                        <input type="text" id="myInput" placeholder="">
+                        <input type="text" id="buscador" placeholder="">
                         
                     </div>
                     <div class="col-12 mt-1">
                         <p class="lead m-0">Filtros: </p>
                         <div class="row">
+                            Fecha inicio
                             <div class="col-12 mb-1">
-                                <input class="w-100" type="date" name="dtFecha" />
+                                <input class="w-100" type="date" name="dtFechaInicio" />
+                            </div>
+                            Fecha fin
+                            <div class="col-12 mb-1">
+                                <input class="w-100" type="date" name="dtFechaFin" />
                             </div>
                             <div class="col-12 mb-1">
-                                <select class="custom-select" name="cboTipo" id="">
+                                <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrarEstado(this)">
                                     <option selected>Estado</option>
                                     @{
-                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_ESTADO> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_ESTADO>;
+                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
 
                                         foreach (var oEstado in estado)
                                         {
-                                            <option value="@oEstado.AVISO_ESTADO_NRO">@oEstado.AVISO_ESTADO_DESCRIP</option>
+                                            <option value="@oEstado.AVISO_SYS_EST">@oEstado.AVISO_ESTADO_DESCRIP</option>
                                         }
                                     }
 
                                 </select>
-                                <select class="custom-select" name="cboTipo" id="">
+                                <select class="custom-select" name="cboTipo" id="cboTipoId" onchange="filtrarTipo(this)">
                                     <option selected>Tipo</option>
                                     @{
-                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS_TIPO>;
+                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
 
                                         foreach (var oTipo in tipo)
                                         {
@@ -88,6 +93,9 @@
                                 <tr>
                                     <th>Descripcion</th>
                                     @*columna oculta, no borrar, permite filtrar por detalle*@
+                                    <th class="d-none">Column 2</th>
+                                    <th class="d-none">Column 2</th>
+                                    <th class="d-none">Column 2</th>
                                     <th class="d-none">Column 2</th>
                                 </tr>
                             </thead>
@@ -126,6 +134,7 @@
                                 }
                                 else
                                 {
+<<<<<<< HEAD
                                     
                                         <div class="col-12 col-md-6 text-center">
                                             <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
@@ -133,6 +142,27 @@
                                         </div>
                                         <div class="col-12 col-md-6 text-center control">
                                             <p class="m-0 d-block btn btn-success">Realizar comentario</p>
+=======
+                                    <div class="col-12 col-md-6 text-center">
+                                        <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
+                                        <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 text-center control">
+                                        <p class="m-0 d-block btn btn-success">Realizar comentario</p>
+
+                                        <textarea class="m-0 w-100 mt-1 d-none" runat="server" name="txtComentario" id="txtComentario"></textarea>
+                                        <div>
+
+                                            <p class="m-0 float-right btn btn-primary d-none">
+                                                @Html.ActionLink("Publicar", "crearComentario", new {
+                                               EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
+                                               AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
+                                               //AVISOCOM_COMENTARIO = txtComentario.value,
+                                               AVISOCOM_USUARIO = ViewBag.codigoUser
+                                           })
+                                            </p>
+>>>>>>> 7647c527c5c76656b7e04f82714303fd3bc81893
                                             
                                             <textarea class="m-0 w-100 mt-1 d-none txtComentario"></textarea>
 
@@ -303,6 +333,21 @@
                     `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                                  `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
                               `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBFECHA+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark row seleccion border-top rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
+                              `</a>`+
                         `</td >`+
 
                     + `</tr>`)
@@ -310,9 +355,37 @@
             $('#table_id').DataTable();
         };
 
-        $('#myInput').keyup(function () {
+        $('#buscador').keyup(function () {
             $('#table_id').DataTable().search($(this).val()).draw();
         });
+
+        let acumulador = "";
+        let estado = "";
+        let tipo = "";
+
+        function filtrarEstado(index) {
+            let descripcion = index.options[index.selectedIndex].text;
+            if (descripcion === "Estado")
+                estado = "";
+            else 
+                estado = descripcion;
+            
+                acumulador = estado + " " + tipo;
+
+                $('#table_id').DataTable().search(acumulador).draw();
+        }
+
+        function filtrarTipo(index) {
+            let descripcion = index.options[index.selectedIndex].text;
+            if (descripcion === "Tipo")
+                tipo = "";
+            else 
+                tipo = descripcion;
+            
+                acumulador = estado + " " + tipo;
+
+                $('#table_id').DataTable().search(acumulador).draw();
+        }
 
 
     </script>
