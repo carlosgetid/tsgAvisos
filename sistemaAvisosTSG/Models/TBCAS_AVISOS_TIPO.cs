@@ -5,11 +5,9 @@ using System.Web;
 
 namespace sistemaAvisosTSG.Models
 {
-    public class TBCAS_AVISOS_TIPO
+    public partial class TBCAS_AVISOS
     {
         public string AVISO_TIPO_DESCRIP { get; set; }
- 
         
-        public decimal AVISO_TIPO_NRO { get; set; }
     }
 }
