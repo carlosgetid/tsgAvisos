@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
 
-    $('.seleccion').on('click', function () {
-        $(this).addClass('text-danger');
-        console.log(this);
-    });
+    //$('.seleccion').on('click', function () {
+    //    $(this).toggleClass('text-danger');
+    //    console.log(this);
+    //});
 
     $('.control > p').on('click', function () {
         $('.control > textarea').toggleClass('d-inline-block');

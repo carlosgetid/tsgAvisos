@@ -11,8 +11,8 @@ namespace sistemaAvisosTSG.Controllers
 {
     public class HacdataController : Controller
     {
-        SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
-        //SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        //SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
 
         public IEnumerable<TBCAS_AVISOS> listaAvisos()
         {
@@ -50,7 +50,7 @@ namespace sistemaAvisosTSG.Controllers
                 return sp;
             }
             
-            SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO", con);
+            SqlCommand cmd = new SqlCommand("SP_LISTAR_AVISO_COMPLETO", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@empresa_codigo", empresa);
             cmd.Parameters.AddWithValue("@aviso_numero", aviso);
