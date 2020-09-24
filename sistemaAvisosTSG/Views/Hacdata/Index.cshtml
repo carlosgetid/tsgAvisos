@@ -118,8 +118,8 @@
                     <div class="col-12 col-md-12">
                         <h6 class="d-inline-block m-0">Asunto</h6>
                         <div class="row">
-
                             @{
+
 
                                 var oSP_LISTAR_AVISO = ViewBag.listaAvisos as sistemaAvisosTSG.Models.SP_LISTAR_AVISO;
 
@@ -134,53 +134,29 @@
                                 }
                                 else
                                 {
-<<<<<<< HEAD
-                                    
-                                        <div class="col-12 col-md-6 text-center">
-                                            <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
-                                            <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
-                                        </div>
-                                        <div class="col-12 col-md-6 text-center control">
-                                            <p class="m-0 d-block btn btn-success">Realizar comentario</p>
-=======
                                     <div class="col-12 col-md-6 text-center">
                                         <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
                                         <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
                                     </div>
-
                                     <div class="col-12 col-md-6 text-center control">
                                         <p class="m-0 d-block btn btn-success">Realizar comentario</p>
 
-                                        <textarea class="m-0 w-100 mt-1 d-none" runat="server" name="txtComentario" id="txtComentario"></textarea>
+                                        <textarea class="m-0 w-100 mt-1 d-none txtComentario"></textarea>
+
                                         <div>
-
-                                            <p class="m-0 float-right btn btn-primary d-none">
-                                                @Html.ActionLink("Publicar", "crearComentario", new {
-                                               EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
-                                               AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
-                                               //AVISOCOM_COMENTARIO = txtComentario.value,
-                                               AVISOCOM_USUARIO = ViewBag.codigoUser
-                                           })
-                                            </p>
->>>>>>> 7647c527c5c76656b7e04f82714303fd3bc81893
-                                            
-                                            <textarea class="m-0 w-100 mt-1 d-none txtComentario"></textarea>
-
-                                            <div>
-                                                <a class="m-0 float-right btn btn-primary d-none btnPublicar" 
-                                                   href="@Url.Action("crearComentario","Hacdata",new {
-                                                        EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
-                                                        AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
-                                                        AVISOCOM_USUARIO = ViewBag.codigoUser,
-                                                        AVISOCOM_COMENTARIO="xxxx"
-                                                    })">
-                                                    Publicar
-                                                </a>                                           
-                                            </div>
+                                            <a class="m-0 float-right btn btn-primary d-none btnPublicar"
+                                               href="@Url.Action("crearComentario", "Hacdata", new {
+                                                    EMPRESA_CODIGO = oSP_LISTAR_AVISO.EMPRESA_CODIGO,
+                                                    AVISO_CODIGO = oSP_LISTAR_AVISO.AVISO_CODIGO,
+                                                    AVISOCOM_USUARIO = ViewBag.codigoUser,
+                                                    AVISOCOM_COMENTARIO = "xxxx"
+                                                })">
+                                                Publicar
+                                            </a>
                                         </div>
-                                       
+                                    </div>
+                                    }
                                 }
-                               }
                             </div>
                     </div>      
                 </div>
@@ -306,7 +282,9 @@
     </script>
     <script>
         let foo = @Html.Raw(Json.Encode(Model));
-        
+        console.log(foo[0]);
+        console.log(foo[0].EMPRESA_CODIGO);
+        console.log(foo[0].AVISO_NRO);
     </script>
 
     <script>
