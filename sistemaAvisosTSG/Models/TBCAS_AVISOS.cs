@@ -17,7 +17,7 @@ namespace sistemaAvisosTSG.Models
 
         public string AVISO_REGHORA { get; set; }
     
-	    public string AVISO_PUBFECHA { get; set; }
+	    public DateTime AVISO_PUBFECHA { get; set; }
 
         public string AVISO_PUBHORA { get; set; }
 

@@ -30,7 +30,7 @@ namespace sistemaAvisosTSG.Controllers
                 ta.AVISO_NRO = dr.GetDecimal(1);
                 ta.AVISO_DESCRIPCION = dr.GetString(2);
                 ta.AVISO_DETALLE = dr.GetString(3);
-                ta.AVISO_PUBFECHA = dr.GetString(4);
+                ta.AVISO_PUBFECHA = dr.GetDateTime(4);
                 ta.AVISO_PUBHORA = dr.GetString(5);
                 ta.AVISO_ESTADO_DESCRIP = dr.GetString(6);
                 ta.AVISO_TIPO_DESCRIP = dr.GetString(7);
@@ -63,7 +63,7 @@ namespace sistemaAvisosTSG.Controllers
                 sp.EMPRESA_CODIGO = dr.GetString(1);
                 sp.USUARI_NOMBRES = dr.GetString(2);
                 sp.USUARI_APEPAT = dr.GetString(3);
-                sp.AVISO_PUBFECHA = dr.GetString(4);
+                sp.AVISO_PUBFECHA = dr.GetDateTime(4);
                 sp.AVISO_PUBHORA = dr.GetString(5);
                 sp.AVISO_DETALLE = dr.GetString(6);
             }
@@ -134,7 +134,7 @@ namespace sistemaAvisosTSG.Controllers
                 sp.USUARI_NOMBRES = dr.GetString(0);
                 sp.USUARI_APEPAT = dr.GetString(1);
                 sp.AVISOCOM_COMENTARIO = dr.GetString(2);
-                sp.AVISOCOM_FECHA = dr.GetString(3);
+                sp.AVISOCOM_FECHA = dr.GetDateTime(3);
                 sp.AVISOCOM_HORA = dr.GetString(4);
 
                 listadito.Add(sp);
