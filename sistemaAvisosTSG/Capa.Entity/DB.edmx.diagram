@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e733ef3c6344fa6af3ff77929e243bb" Name="Diagram1">
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISO_ARCHIVO" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISO_COMENTARIO" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISO_PUBLICA_ESTADO" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISOS" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISOS_ARCHIVO_XUSUARIO" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISOS_ESTADO" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISOS_PUBLICA" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBCAS_AVISOS_TIPO" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGEmpresa1TEModel.TBUSUARI" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_COMENTARIO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGEmpresa1TEModel.FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

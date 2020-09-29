@@ -1,0 +1,12 @@
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\bin\Debug\EntityFramework.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\bin\Debug\EntityFramework.xml
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\obj\Debug\Capa.EN.csprojAssemblyReference.cache
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\obj\Debug\Capa.EN.csproj.CoreCompileInputs.cache
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\obj\Debug\Capa.EN.csproj.CopyComplete
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\bin\Debug\Capa.EN.dll.config
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\bin\Debug\Capa.EN.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\bin\Debug\Capa.EN.pdb
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\obj\Debug\Capa.EN.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Entity\obj\Debug\Capa.EN.pdb

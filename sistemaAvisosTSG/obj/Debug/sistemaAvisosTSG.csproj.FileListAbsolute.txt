@@ -156,3 +156,4 @@ C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.
 C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.dll
 C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.pdb
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.csprojAssemblyReference.cache
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.Optimization.resources.dll
