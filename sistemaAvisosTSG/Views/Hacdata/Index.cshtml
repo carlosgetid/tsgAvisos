@@ -44,16 +44,16 @@
                             <div class="col-12">
                                 <em class="m-0">Fecha inicio </em>
                             </div>
-                           
+
                             <div class="col-12 mb-1">
-                                <input class="form-control w-100" type="date" name="dtFechaInicio" />
+                                <input id="fechaInicioID" class="form-control w-100" type="date" name="dtFechaInicio" onchange="filtrarFechaInicio()"/>
                             </div>
                             <div class="col-12">
                                 <em class="m-0">Fecha fin </em>
                             </div>
                             
                             <div class="col-12 mb-1">
-                                <input class="form-control w-100" type="date" name="dtFechaFin" />
+                                <input id="fechaFinID" class="form-control w-100" type="date" name="dtFechaFin" onchange="filtrarFechaFin()"/>
                             </div>
                             <div class="col-12 mb-1">
                                 <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrarEstado(this)">
@@ -97,11 +97,12 @@
                                 <thead>
                                     <tr>
                                         <th class="border-0 text-dark">Descripcion</th>
-                                        @*columna oculta, no borrar, permite filtrar por detalle*@
+                                        @*columnas ocultas, no borrar, permite filtrar por detalle*@
                                         <th class="d-none">Column 2</th>
-                                        <th class="d-none">Column 2</th>
-                                        <th class="d-none">Column 2</th>
-                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 3</th>
+                                        <th class="d-none">Column 4</th>
+                                        <th class="d-none">Column 5</th>
+                                        <th class="d-none">Column 6</th>
                                     </tr>
                                 </thead>
 
@@ -111,7 +112,7 @@
                             </table>
                         </div>
                         
-
+                        .
                         @{int i = 1;}
       
                         
@@ -313,27 +314,39 @@
             $.each(arr, function (index, item) {
 
                 $("#table_id").append(
-                    `<tr>`+
-                        `<td class="text-center w-100">`+
+                    `<tr>` +
+
+                    `<td class="text-center w-100">`+
                              `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`&pCodigo=@ViewBag.codigoUser>` +
                                  `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
                               `</a>`+
-                    `</td >`+
+                    `</td >` +
+
                     `<td class="d-none">`+
                     `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                                  `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
                               `</a>`+
                     `</td >` +
-                    `<td class="d-none">`+
+
+                    `<td>`+
                     `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
-                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBFECHA+`</p >`+
+                    `<p class= "col-7 overflow-hidden elegir" >` + new Date(parseInt(arr[index].AVISO_PUBFECHA.replace('/Date(', '')))+`</p >`+
                               `</a>`+
                     `</td >` +
+
+
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBHORA+`</p >`+
+                              `</a>`+
+                    `</td >` +
+
                     `<td class="d-none">`+
                     `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP+`</p >`+
                               `</a>`+
                     `</td >` +
+
                     `<td class="d-none">`+
                     `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
@@ -357,9 +370,9 @@
             let descripcion = index.options[index.selectedIndex].text;
             if (descripcion === "Estado")
                 estado = "";
-            else 
+            else
                 estado = descripcion;
-            
+
                 acumulador = estado + " " + tipo;
 
                 $('#table_id').DataTable().search(acumulador).draw();
@@ -369,15 +382,22 @@
             let descripcion = index.options[index.selectedIndex].text;
             if (descripcion === "Tipo")
                 tipo = "";
-            else 
+            else
                 tipo = descripcion;
-            
+
                 acumulador = estado + " " + tipo;
 
                 $('#table_id').DataTable().search(acumulador).draw();
         }
 
+        function filtrarFechaInicio() {
+            let x = $('#fechaInicioID').val();
+            console.log(x);
+        }
 
+        function filtrarFechaFin() {
+
+        }
     </script>
 
 </body>
