@@ -1,0 +1,14 @@
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\obj\Debug\Capa.BLL.csprojAssemblyReference.cache
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\obj\Debug\Capa.BLL.csproj.CoreCompileInputs.cache
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\Capa.BLL.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\Capa.BLL.pdb
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\Capa.DAL.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\Capa.EN.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\EntityFramework.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\Capa.DAL.pdb
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\Capa.EN.pdb
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\Capa.EN.dll.config
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\bin\Debug\EntityFramework.xml
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\obj\Debug\Capa.BLL.csproj.CopyComplete
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\obj\Debug\Capa.BLL.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\Capa.Business\obj\Debug\Capa.BLL.pdb

@@ -1,0 +1,989 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDGEmpresa1TEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBCAS_AVISO_ARCHIVO">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+            <PropertyRef Name="AVISOARCH_CODIGO" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_ARCHIVO" Type="varchar" MaxLength="500" />
+          <Property Name="AVISO_RUTA" Type="varchar" MaxLength="500" />
+          <Property Name="AVISO_SYS_CRE" Type="varchar" MaxLength="20" />
+          <Property Name="AVISO_SYS_EST" Type="varchar" MaxLength="1" />
+          <Property Name="AVISOARCH_CODIGO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOARCH_NROVECES" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISO_COMENTARIO">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+            <PropertyRef Name="AVISOCOM_ID" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOCOM_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOCOM_USUARIO" Type="varchar" MaxLength="8" />
+          <Property Name="AVISOCOM_COMENTARIO" Type="varchar" MaxLength="5000" />
+          <Property Name="AVISOCOM_FECHA" Type="varchar" MaxLength="8" />
+          <Property Name="AVISOCOM_HORA" Type="varchar" MaxLength="6" />
+          <Property Name="AVISOCOM_SYS_EST" Type="varchar" MaxLength="1" />
+          <Property Name="AVISOCOM_SYS_CRE" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISO_PUBLICA_ESTADO">
+          <Key>
+            <PropertyRef Name="AVISO_PUBLICA_ESTADO_ID" />
+          </Key>
+          <Property Name="AVISO_PUBLICA_ESTADO_DESCRIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AVISO_PUBLICA_ESTADO_ID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_TIPO_NRO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_REGFECHA" Type="varchar" MaxLength="8" />
+          <Property Name="AVISO_REGHORA" Type="varchar" MaxLength="6" />
+          <Property Name="AVISO_PUBFECHA" Type="varchar" MaxLength="8" />
+          <Property Name="AVISO_PUBHORA" Type="varchar" MaxLength="6" />
+          <Property Name="AVISO_DESCRIPCION" Type="varchar" MaxLength="2000" />
+          <Property Name="AVISO_SYS_EST" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="AVISO_DETALLE" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+            <PropertyRef Name="AVISOARCH_CODIGO" />
+            <PropertyRef Name="AVISOARCH_USUARIO" />
+            <PropertyRef Name="AVISOARCH_FECHA" />
+            <PropertyRef Name="AVISOARCH_HORA" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOARCH_CODIGO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOARCH_USUARIO" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="AVISOARCH_FECHA" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="AVISOARCH_HORA" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="AVISOARCH_SYS_EST" Type="varchar" MaxLength="1" />
+          <Property Name="AVISOARCH_SYS_CRE" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_ESTADO">
+          <Key>
+            <PropertyRef Name="AVISO_ESTADO_NRO" />
+          </Key>
+          <Property Name="AVISO_ESTADO_DESCRIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AVISO_ESTADO_NRO" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_PUBLICA">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="USUARI_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="USUARI_CODIGO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_PUBLICA_ESTADO_ID" Type="tinyint" Nullable="false" />
+          <Property Name="CANTIDAD" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_TIPO">
+          <Key>
+            <PropertyRef Name="AVISO_TIPO_NRO" />
+          </Key>
+          <Property Name="AVISO_TIPO_DESCRIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AVISO_TIPO_NRO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBUSUARI">
+          <Key>
+            <PropertyRef Name="USUARI_CODIGO" />
+          </Key>
+          <Property Name="USUARI_CODIGO" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="USUARI_PASS" Type="varchar" MaxLength="10" />
+          <Property Name="USUARI_FECPASS" Type="varchar" MaxLength="8" />
+          <Property Name="USUARI_ESTADO" Type="varchar" MaxLength="1" />
+          <Property Name="USUARI_ESTASOCIADO" Type="varchar" MaxLength="2" />
+          <Property Name="USUARI_NIVEL" Type="varchar" MaxLength="2" />
+          <Property Name="USUARI_FECINI" Type="varchar" MaxLength="8" />
+          <Property Name="USUARI_FECFIN" Type="varchar" MaxLength="8" />
+          <Property Name="USUARI_DIAHORACC" Type="varchar" MaxLength="168" />
+          <Property Name="USUARI_ACCFER" Type="varchar" MaxLength="1" />
+          <Property Name="USUARI_NUMPASS" Type="varchar" MaxLength="1" />
+          <Property Name="USUARI_PASSANT" Type="varchar" MaxLength="40" />
+          <Property Name="USUARI_SYS_CRE" Type="varchar" MaxLength="20" />
+          <Property Name="USUARI_SYS_MOD" Type="varchar" MaxLength="20" />
+          <Property Name="USUARI_SYS_EST" Type="varchar" MaxLength="1" />
+          <Property Name="USUARI_APEPAT" Type="varchar" MaxLength="15" />
+          <Property Name="USUARI_APEMAT" Type="varchar" MaxLength="15" />
+          <Property Name="USUARI_NOMBRES" Type="varchar" MaxLength="20" />
+          <Property Name="USUARI_DOCIDENAC" Type="varchar" MaxLength="10" />
+          <Property Name="USUARI_TIPDOCIDE" Type="varchar" MaxLength="1" />
+          <Property Name="USUARI_CODDOCIDE" Type="varchar" MaxLength="10" />
+          <Property Name="USUARI_TIPO" Type="varchar" MaxLength="2" />
+          <Property Name="USUARI_TIPO_EXP" Type="varchar" MaxLength="2" />
+          <Property Name="USUARI_DIAS_EXP" Type="varchar" MaxLength="4" />
+          <Property Name="USUARI_CORREO" Type="varchar" MaxLength="50" />
+          <Property Name="PERSON_COD_INTERNO" Type="varchar" MaxLength="10" />
+          <Property Name="USUARI_TELEFONO" Type="varchar" MaxLength="50" />
+          <Property Name="USUARI_SEXO" Type="varchar" MaxLength="2" />
+          <Property Name="USUARI_FECHANAC" Type="varchar" MaxLength="8" />
+          <Property Name="USUARI_DIRECCION" Type="varchar" MaxLength="250" />
+          <Property Name="USUARI_PAIS" Type="varchar" MaxLength="6" />
+          <Property Name="USUARI_DPTO" Type="varchar" MaxLength="6" />
+          <Property Name="USUARI_PROV" Type="varchar" MaxLength="6" />
+          <Property Name="USUARI_DIST" Type="varchar" MaxLength="6" />
+          <Property Name="USUARI_EMPRESA" Type="varchar" MaxLength="250" />
+          <Property Name="USUARI_EMPRESA_OFICINA" Type="varchar" MaxLength="250" />
+          <Property Name="USUARI_EMPRESA_PUESTO" Type="varchar" MaxLength="250" />
+          <Property Name="USUARI_PROVEEDOR" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_COMENTARIO_USUARIO">
+          <End Role="TBUSUARI" Type="Self.TBUSUARI" Multiplicity="0..1" />
+          <End Role="TBCAS_AVISO_COMENTARIO" Type="Self.TBCAS_AVISO_COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBUSUARI">
+              <PropertyRef Name="USUARI_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISO_COMENTARIO">
+              <PropertyRef Name="AVISOCOM_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1">
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="1" />
+          <End Role="TBCAS_AVISO_ARCHIVO" Type="Self.TBCAS_AVISO_ARCHIVO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISO_ARCHIVO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS">
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="1" />
+          <End Role="TBCAS_AVISO_COMENTARIO" Type="Self.TBCAS_AVISO_COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISO_COMENTARIO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO">
+          <End Role="TBCAS_AVISO_ARCHIVO" Type="Self.TBCAS_AVISO_ARCHIVO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_ARCHIVO_XUSUARIO" Type="Self.TBCAS_AVISOS_ARCHIVO_XUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISO_ARCHIVO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+              <PropertyRef Name="AVISOARCH_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+              <PropertyRef Name="AVISOARCH_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1">
+          <End Role="TBCAS_AVISO_PUBLICA_ESTADO" Type="Self.TBCAS_AVISO_PUBLICA_ESTADO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_PUBLICA" Type="Self.TBCAS_AVISOS_PUBLICA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISO_PUBLICA_ESTADO">
+              <PropertyRef Name="AVISO_PUBLICA_ESTADO_ID" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_PUBLICA">
+              <PropertyRef Name="AVISO_PUBLICA_ESTADO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS">
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_PUBLICA" Type="Self.TBCAS_AVISOS_PUBLICA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_PUBLICA">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1">
+          <End Role="TBUSUARI" Type="Self.TBUSUARI" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_PUBLICA" Type="Self.TBCAS_AVISOS_PUBLICA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBUSUARI">
+              <PropertyRef Name="USUARI_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_PUBLICA">
+              <PropertyRef Name="USUARI_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1">
+          <End Role="TBCAS_AVISOS_ESTADO" Type="Self.TBCAS_AVISOS_ESTADO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS_ESTADO">
+              <PropertyRef Name="AVISO_ESTADO_NRO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS">
+              <PropertyRef Name="AVISO_SYS_EST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1">
+          <End Role="TBCAS_AVISOS_TIPO" Type="Self.TBCAS_AVISOS_TIPO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS_TIPO">
+              <PropertyRef Name="AVISO_TIPO_NRO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS">
+              <PropertyRef Name="AVISO_TIPO_NRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_BUSCAR_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_usuari_codigo" Type="varchar" Mode="In" />
+          <Parameter Name="p_usuari_pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTAR_ADJUNTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empresa_codigo" Type="varchar" Mode="In" />
+          <Parameter Name="aviso_numero" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTAR_AVISO_COMPLETO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empresa_codigo" Type="varchar" Mode="In" />
+          <Parameter Name="aviso_numero" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTAR_AVISOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_COMENTARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empresa_codigo" Type="varchar" Mode="In" />
+          <Parameter Name="aviso_numero" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTAR_ESTADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_TIPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_NUEVO_COMENTARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_empresa" Type="varchar" Mode="In" />
+          <Parameter Name="id_aviso" Type="numeric" Mode="In" />
+          <Parameter Name="id_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="AVISOCOM_COMENTARIO" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="BDGEmpresa1TEModelStoreContainer">
+          <EntitySet Name="TBCAS_AVISO_ARCHIVO" EntityType="Self.TBCAS_AVISO_ARCHIVO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCAS_AVISO_COMENTARIO" EntityType="Self.TBCAS_AVISO_COMENTARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCAS_AVISO_PUBLICA_ESTADO" EntityType="Self.TBCAS_AVISO_PUBLICA_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCAS_AVISOS" EntityType="Self.TBCAS_AVISOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCAS_AVISOS_ARCHIVO_XUSUARIO" EntityType="Self.TBCAS_AVISOS_ARCHIVO_XUSUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCAS_AVISOS_ESTADO" EntityType="Self.TBCAS_AVISOS_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCAS_AVISOS_PUBLICA" EntityType="Self.TBCAS_AVISOS_PUBLICA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBCAS_AVISOS_TIPO" EntityType="Self.TBCAS_AVISOS_TIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBUSUARI" EntityType="Self.TBUSUARI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_COMENTARIO_USUARIO" Association="Self.FK_COMENTARIO_USUARIO">
+            <End Role="TBUSUARI" EntitySet="TBUSUARI" />
+            <End Role="TBCAS_AVISO_COMENTARIO" EntitySet="TBCAS_AVISO_COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1" Association="Self.FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1">
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+            <End Role="TBCAS_AVISO_ARCHIVO" EntitySet="TBCAS_AVISO_ARCHIVO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS" Association="Self.FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS">
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+            <End Role="TBCAS_AVISO_COMENTARIO" EntitySet="TBCAS_AVISO_COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO" Association="Self.FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO">
+            <End Role="TBCAS_AVISO_ARCHIVO" EntitySet="TBCAS_AVISO_ARCHIVO" />
+            <End Role="TBCAS_AVISOS_ARCHIVO_XUSUARIO" EntitySet="TBCAS_AVISOS_ARCHIVO_XUSUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1" Association="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1">
+            <End Role="TBCAS_AVISO_PUBLICA_ESTADO" EntitySet="TBCAS_AVISO_PUBLICA_ESTADO" />
+            <End Role="TBCAS_AVISOS_PUBLICA" EntitySet="TBCAS_AVISOS_PUBLICA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS" Association="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS">
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+            <End Role="TBCAS_AVISOS_PUBLICA" EntitySet="TBCAS_AVISOS_PUBLICA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1" Association="Self.FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1">
+            <End Role="TBUSUARI" EntitySet="TBUSUARI" />
+            <End Role="TBCAS_AVISOS_PUBLICA" EntitySet="TBCAS_AVISOS_PUBLICA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1" Association="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1">
+            <End Role="TBCAS_AVISOS_ESTADO" EntitySet="TBCAS_AVISOS_ESTADO" />
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1" Association="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1">
+            <End Role="TBCAS_AVISOS_TIPO" EntitySet="TBCAS_AVISOS_TIPO" />
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDGEmpresa1TEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBCAS_AVISO_ARCHIVO">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+            <PropertyRef Name="AVISOARCH_CODIGO" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_ARCHIVO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_RUTA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_SYS_CRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_SYS_EST" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="AVISOARCH_CODIGO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOARCH_NROVECES" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="TBCAS_AVISOS" Relationship="Self.FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1" FromRole="TBCAS_AVISO_ARCHIVO" ToRole="TBCAS_AVISOS" />
+          <NavigationProperty Name="TBCAS_AVISOS_ARCHIVO_XUSUARIO" Relationship="Self.FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO" FromRole="TBCAS_AVISO_ARCHIVO" ToRole="TBCAS_AVISOS_ARCHIVO_XUSUARIO" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISO_COMENTARIO">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+            <PropertyRef Name="AVISOCOM_ID" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOCOM_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOCOM_USUARIO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="AVISOCOM_COMENTARIO" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="AVISOCOM_FECHA" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="AVISOCOM_HORA" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="AVISOCOM_SYS_EST" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="AVISOCOM_SYS_CRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBUSUARI" Relationship="Self.FK_COMENTARIO_USUARIO" FromRole="TBCAS_AVISO_COMENTARIO" ToRole="TBUSUARI" />
+          <NavigationProperty Name="TBCAS_AVISOS" Relationship="Self.FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS" FromRole="TBCAS_AVISO_COMENTARIO" ToRole="TBCAS_AVISOS" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISO_PUBLICA_ESTADO">
+          <Key>
+            <PropertyRef Name="AVISO_PUBLICA_ESTADO_ID" />
+          </Key>
+          <Property Name="AVISO_PUBLICA_ESTADO_DESCRIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_PUBLICA_ESTADO_ID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="TBCAS_AVISOS_PUBLICA" Relationship="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1" FromRole="TBCAS_AVISO_PUBLICA_ESTADO" ToRole="TBCAS_AVISOS_PUBLICA" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_TIPO_NRO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_REGFECHA" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_REGHORA" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_PUBFECHA" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_PUBHORA" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_DESCRIPCION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="AVISO_SYS_EST" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_DETALLE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBCAS_AVISO_ARCHIVO" Relationship="Self.FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1" FromRole="TBCAS_AVISOS" ToRole="TBCAS_AVISO_ARCHIVO" />
+          <NavigationProperty Name="TBCAS_AVISO_COMENTARIO" Relationship="Self.FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS" FromRole="TBCAS_AVISOS" ToRole="TBCAS_AVISO_COMENTARIO" />
+          <NavigationProperty Name="TBCAS_AVISOS_PUBLICA" Relationship="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS" FromRole="TBCAS_AVISOS" ToRole="TBCAS_AVISOS_PUBLICA" />
+          <NavigationProperty Name="TBCAS_AVISOS_ESTADO" Relationship="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1" FromRole="TBCAS_AVISOS" ToRole="TBCAS_AVISOS_ESTADO" />
+          <NavigationProperty Name="TBCAS_AVISOS_TIPO" Relationship="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1" FromRole="TBCAS_AVISOS" ToRole="TBCAS_AVISOS_TIPO" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+            <PropertyRef Name="AVISOARCH_CODIGO" />
+            <PropertyRef Name="AVISOARCH_USUARIO" />
+            <PropertyRef Name="AVISOARCH_FECHA" />
+            <PropertyRef Name="AVISOARCH_HORA" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOARCH_CODIGO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISOARCH_USUARIO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="AVISOARCH_FECHA" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISOARCH_HORA" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISOARCH_SYS_EST" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="AVISOARCH_SYS_CRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBCAS_AVISO_ARCHIVO" Relationship="Self.FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO" FromRole="TBCAS_AVISOS_ARCHIVO_XUSUARIO" ToRole="TBCAS_AVISO_ARCHIVO" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_ESTADO">
+          <Key>
+            <PropertyRef Name="AVISO_ESTADO_NRO" />
+          </Key>
+          <Property Name="AVISO_ESTADO_DESCRIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_ESTADO_NRO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TBCAS_AVISOS" Relationship="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1" FromRole="TBCAS_AVISOS_ESTADO" ToRole="TBCAS_AVISOS" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_PUBLICA">
+          <Key>
+            <PropertyRef Name="EMPRESA_CODIGO" />
+            <PropertyRef Name="USUARI_CODIGO" />
+            <PropertyRef Name="AVISO_CODIGO" />
+          </Key>
+          <Property Name="EMPRESA_CODIGO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USUARI_CODIGO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_CODIGO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AVISO_PUBLICA_ESTADO_ID" Type="Byte" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="TBCAS_AVISO_PUBLICA_ESTADO" Relationship="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1" FromRole="TBCAS_AVISOS_PUBLICA" ToRole="TBCAS_AVISO_PUBLICA_ESTADO" />
+          <NavigationProperty Name="TBCAS_AVISOS" Relationship="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS" FromRole="TBCAS_AVISOS_PUBLICA" ToRole="TBCAS_AVISOS" />
+          <NavigationProperty Name="TBUSUARI" Relationship="Self.FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1" FromRole="TBCAS_AVISOS_PUBLICA" ToRole="TBUSUARI" />
+        </EntityType>
+        <EntityType Name="TBCAS_AVISOS_TIPO">
+          <Key>
+            <PropertyRef Name="AVISO_TIPO_NRO" />
+          </Key>
+          <Property Name="AVISO_TIPO_DESCRIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AVISO_TIPO_NRO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="TBCAS_AVISOS" Relationship="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1" FromRole="TBCAS_AVISOS_TIPO" ToRole="TBCAS_AVISOS" />
+        </EntityType>
+        <EntityType Name="TBUSUARI">
+          <Key>
+            <PropertyRef Name="USUARI_CODIGO" />
+          </Key>
+          <Property Name="USUARI_CODIGO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USUARI_PASS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_FECPASS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_ESTADO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_ESTASOCIADO" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_NIVEL" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_FECINI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_FECFIN" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_DIAHORACC" Type="String" MaxLength="168" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_ACCFER" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_NUMPASS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_PASSANT" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_SYS_CRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_SYS_MOD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_SYS_EST" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_APEPAT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_APEMAT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_NOMBRES" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_DOCIDENAC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_TIPDOCIDE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_CODDOCIDE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_TIPO" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_TIPO_EXP" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_DIAS_EXP" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_CORREO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PERSON_COD_INTERNO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_SEXO" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_FECHANAC" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_DIRECCION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_PAIS" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_DPTO" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_PROV" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_DIST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_EMPRESA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_EMPRESA_OFICINA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_EMPRESA_PUESTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="USUARI_PROVEEDOR" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBCAS_AVISO_COMENTARIO" Relationship="Self.FK_COMENTARIO_USUARIO" FromRole="TBUSUARI" ToRole="TBCAS_AVISO_COMENTARIO" />
+          <NavigationProperty Name="TBCAS_AVISOS_PUBLICA" Relationship="Self.FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1" FromRole="TBUSUARI" ToRole="TBCAS_AVISOS_PUBLICA" />
+        </EntityType>
+        <Association Name="FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1">
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="1" />
+          <End Role="TBCAS_AVISO_ARCHIVO" Type="Self.TBCAS_AVISO_ARCHIVO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISO_ARCHIVO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO">
+          <End Role="TBCAS_AVISO_ARCHIVO" Type="Self.TBCAS_AVISO_ARCHIVO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_ARCHIVO_XUSUARIO" Type="Self.TBCAS_AVISOS_ARCHIVO_XUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISO_ARCHIVO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+              <PropertyRef Name="AVISOARCH_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+              <PropertyRef Name="AVISOARCH_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMENTARIO_USUARIO">
+          <End Role="TBUSUARI" Type="Self.TBUSUARI" Multiplicity="0..1" />
+          <End Role="TBCAS_AVISO_COMENTARIO" Type="Self.TBCAS_AVISO_COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBUSUARI">
+              <PropertyRef Name="USUARI_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISO_COMENTARIO">
+              <PropertyRef Name="AVISOCOM_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS">
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="1" />
+          <End Role="TBCAS_AVISO_COMENTARIO" Type="Self.TBCAS_AVISO_COMENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISO_COMENTARIO">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1">
+          <End Role="TBCAS_AVISO_PUBLICA_ESTADO" Type="Self.TBCAS_AVISO_PUBLICA_ESTADO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_PUBLICA" Type="Self.TBCAS_AVISOS_PUBLICA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISO_PUBLICA_ESTADO">
+              <PropertyRef Name="AVISO_PUBLICA_ESTADO_ID" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_PUBLICA">
+              <PropertyRef Name="AVISO_PUBLICA_ESTADO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS">
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_PUBLICA" Type="Self.TBCAS_AVISOS_PUBLICA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_PUBLICA">
+              <PropertyRef Name="EMPRESA_CODIGO" />
+              <PropertyRef Name="AVISO_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1">
+          <End Role="TBCAS_AVISOS_ESTADO" Type="Self.TBCAS_AVISOS_ESTADO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS_ESTADO">
+              <PropertyRef Name="AVISO_ESTADO_NRO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS">
+              <PropertyRef Name="AVISO_SYS_EST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1">
+          <End Role="TBCAS_AVISOS_TIPO" Type="Self.TBCAS_AVISOS_TIPO" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS" Type="Self.TBCAS_AVISOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBCAS_AVISOS_TIPO">
+              <PropertyRef Name="AVISO_TIPO_NRO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS">
+              <PropertyRef Name="AVISO_TIPO_NRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1">
+          <End Role="TBUSUARI" Type="Self.TBUSUARI" Multiplicity="1" />
+          <End Role="TBCAS_AVISOS_PUBLICA" Type="Self.TBCAS_AVISOS_PUBLICA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBUSUARI">
+              <PropertyRef Name="USUARI_CODIGO" />
+            </Principal>
+            <Dependent Role="TBCAS_AVISOS_PUBLICA">
+              <PropertyRef Name="USUARI_CODIGO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConexionDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBCAS_AVISO_ARCHIVO" EntityType="Self.TBCAS_AVISO_ARCHIVO" />
+          <EntitySet Name="TBCAS_AVISO_COMENTARIO" EntityType="Self.TBCAS_AVISO_COMENTARIO" />
+          <EntitySet Name="TBCAS_AVISO_PUBLICA_ESTADO" EntityType="Self.TBCAS_AVISO_PUBLICA_ESTADO" />
+          <EntitySet Name="TBCAS_AVISOS" EntityType="Self.TBCAS_AVISOS" />
+          <EntitySet Name="TBCAS_AVISOS_ARCHIVO_XUSUARIO" EntityType="Self.TBCAS_AVISOS_ARCHIVO_XUSUARIO" />
+          <EntitySet Name="TBCAS_AVISOS_ESTADO" EntityType="Self.TBCAS_AVISOS_ESTADO" />
+          <EntitySet Name="TBCAS_AVISOS_PUBLICA" EntityType="Self.TBCAS_AVISOS_PUBLICA" />
+          <EntitySet Name="TBCAS_AVISOS_TIPO" EntityType="Self.TBCAS_AVISOS_TIPO" />
+          <EntitySet Name="TBUSUARI" EntityType="Self.TBUSUARI" />
+          <AssociationSet Name="FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1" Association="Self.FK_TBCAS_AVISO_ARCHIVO_TBCAS_AVISOS1">
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+            <End Role="TBCAS_AVISO_ARCHIVO" EntitySet="TBCAS_AVISO_ARCHIVO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO" Association="Self.FK_TBCAS_AVISOS_ARCHIVO_XUSUARIO_TBCAS_AVISO_ARCHIVO">
+            <End Role="TBCAS_AVISO_ARCHIVO" EntitySet="TBCAS_AVISO_ARCHIVO" />
+            <End Role="TBCAS_AVISOS_ARCHIVO_XUSUARIO" EntitySet="TBCAS_AVISOS_ARCHIVO_XUSUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMENTARIO_USUARIO" Association="Self.FK_COMENTARIO_USUARIO">
+            <End Role="TBUSUARI" EntitySet="TBUSUARI" />
+            <End Role="TBCAS_AVISO_COMENTARIO" EntitySet="TBCAS_AVISO_COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS" Association="Self.FK_TBCAS_AVISO_COMENTARIO_TBCAS_AVISOS">
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+            <End Role="TBCAS_AVISO_COMENTARIO" EntitySet="TBCAS_AVISO_COMENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1" Association="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISO_PUBLICA_ESTADO1">
+            <End Role="TBCAS_AVISO_PUBLICA_ESTADO" EntitySet="TBCAS_AVISO_PUBLICA_ESTADO" />
+            <End Role="TBCAS_AVISOS_PUBLICA" EntitySet="TBCAS_AVISOS_PUBLICA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS" Association="Self.FK_TBCAS_AVISOS_PUBLICA_TBCAS_AVISOS">
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+            <End Role="TBCAS_AVISOS_PUBLICA" EntitySet="TBCAS_AVISOS_PUBLICA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1" Association="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_ESTADO1">
+            <End Role="TBCAS_AVISOS_ESTADO" EntitySet="TBCAS_AVISOS_ESTADO" />
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1" Association="Self.FK_TBCAS_AVISOS_TBCAS_AVISOS_TIPO1">
+            <End Role="TBCAS_AVISOS_TIPO" EntitySet="TBCAS_AVISOS_TIPO" />
+            <End Role="TBCAS_AVISOS" EntitySet="TBCAS_AVISOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1" Association="Self.FK_TBCAS_AVISOS_PUBLICA_TBUSUARI1">
+            <End Role="TBUSUARI" EntitySet="TBUSUARI" />
+            <End Role="TBCAS_AVISOS_PUBLICA" EntitySet="TBCAS_AVISOS_PUBLICA" />
+          </AssociationSet>
+          <FunctionImport Name="SP_BUSCAR_USUARIO" ReturnType="Collection(BDGEmpresa1TEModel.SP_BUSCAR_USUARIO_Result)">
+            <Parameter Name="p_usuari_codigo" Mode="In" Type="String" />
+            <Parameter Name="p_usuari_pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTAR_ADJUNTOS" ReturnType="Collection(BDGEmpresa1TEModel.SP_LISTAR_ADJUNTOS_Result)">
+            <Parameter Name="empresa_codigo" Mode="In" Type="String" />
+            <Parameter Name="aviso_numero" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTAR_AVISO_COMPLETO" ReturnType="Collection(BDGEmpresa1TEModel.SP_LISTAR_AVISO_COMPLETO_Result)">
+            <Parameter Name="empresa_codigo" Mode="In" Type="String" />
+            <Parameter Name="aviso_numero" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTAR_AVISOS" ReturnType="Collection(BDGEmpresa1TEModel.SP_LISTAR_AVISOS_Result)" />
+          <FunctionImport Name="SP_LISTAR_COMENTARIO" ReturnType="Collection(BDGEmpresa1TEModel.SP_LISTAR_COMENTARIO_Result)">
+            <Parameter Name="empresa_codigo" Mode="In" Type="String" />
+            <Parameter Name="aviso_numero" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTAR_ESTADO" ReturnType="Collection(BDGEmpresa1TEModel.SP_LISTAR_ESTADO_Result)" />
+          <FunctionImport Name="SP_LISTAR_TIPO" ReturnType="Collection(BDGEmpresa1TEModel.SP_LISTAR_TIPO_Result)" />
+          <FunctionImport Name="SP_NUEVO_COMENTARIO">
+            <Parameter Name="id_empresa" Mode="In" Type="String" />
+            <Parameter Name="id_aviso" Mode="In" Type="Decimal" />
+            <Parameter Name="id_usuario" Mode="In" Type="String" />
+            <Parameter Name="AVISOCOM_COMENTARIO" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_BUSCAR_USUARIO_Result">
+          <Property Type="String" Name="USUARI_CODIGO" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="USUARI_PASS" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="USUARI_APEPAT" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="USUARI_APEMAT" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="USUARI_NOMBRES" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="USUARI_CORREO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="USUARI_TELEFONO" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_ADJUNTOS_Result">
+          <Property Type="String" Name="EMPRESA_CODIGO" Nullable="false" MaxLength="4" />
+          <Property Type="Decimal" Name="AVISO_CODIGO" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="AVISOARCH_CODIGO" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="AVISO_ARCHIVO" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="AVISO_RUTA" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_AVISO_COMPLETO_Result">
+          <Property Type="Decimal" Name="AVISO_CODIGO" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="EMPRESA_CODIGO" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="USUARI_NOMBRES" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="USUARI_APEPAT" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="Column1" Nullable="true" />
+          <Property Type="String" Name="Column2" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="AVISO_DETALLE" Nullable="true" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_AVISOS_Result">
+          <Property Type="String" Name="EMPRESA_CODIGO" Nullable="false" MaxLength="4" />
+          <Property Type="Decimal" Name="AVISO_CODIGO" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="AVISO_DESCRIPCION" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="AVISO_DETALLE" Nullable="true" MaxLength="2000" />
+          <Property Type="DateTime" Name="Column1" Nullable="true" />
+          <Property Type="String" Name="Column2" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="AVISO_ESTADO_DESCRIP" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="AVISO_TIPO_DESCRIP" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_COMENTARIO_Result">
+          <Property Type="String" Name="USUARI_NOMBRES" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="USUARI_APEPAT" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="AVISOCOM_COMENTARIO" Nullable="true" MaxLength="5000" />
+          <Property Type="DateTime" Name="Column1" Nullable="true" />
+          <Property Type="String" Name="Column2" Nullable="true" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_ESTADO_Result">
+          <Property Type="String" Name="AVISO_ESTADO_DESCRIP" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="AVISO_ESTADO_NRO" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_TIPO_Result">
+          <Property Type="String" Name="AVISO_TIPO_DESCRIP" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="AVISO_TIPO_NRO" Nullable="false" Precision="18" Scale="0" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDGEmpresa1TEModelStoreContainer" CdmEntityContainer="ConexionDB">
+          <EntitySetMapping Name="TBCAS_AVISO_ARCHIVO">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISO_ARCHIVO">
+              <MappingFragment StoreEntitySet="TBCAS_AVISO_ARCHIVO">
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="AVISO_ARCHIVO" ColumnName="AVISO_ARCHIVO" />
+                <ScalarProperty Name="AVISO_RUTA" ColumnName="AVISO_RUTA" />
+                <ScalarProperty Name="AVISO_SYS_CRE" ColumnName="AVISO_SYS_CRE" />
+                <ScalarProperty Name="AVISO_SYS_EST" ColumnName="AVISO_SYS_EST" />
+                <ScalarProperty Name="AVISOARCH_CODIGO" ColumnName="AVISOARCH_CODIGO" />
+                <ScalarProperty Name="AVISOARCH_NROVECES" ColumnName="AVISOARCH_NROVECES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCAS_AVISO_COMENTARIO">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISO_COMENTARIO">
+              <MappingFragment StoreEntitySet="TBCAS_AVISO_COMENTARIO">
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="AVISOCOM_ID" ColumnName="AVISOCOM_ID" />
+                <ScalarProperty Name="AVISOCOM_USUARIO" ColumnName="AVISOCOM_USUARIO" />
+                <ScalarProperty Name="AVISOCOM_COMENTARIO" ColumnName="AVISOCOM_COMENTARIO" />
+                <ScalarProperty Name="AVISOCOM_FECHA" ColumnName="AVISOCOM_FECHA" />
+                <ScalarProperty Name="AVISOCOM_HORA" ColumnName="AVISOCOM_HORA" />
+                <ScalarProperty Name="AVISOCOM_SYS_EST" ColumnName="AVISOCOM_SYS_EST" />
+                <ScalarProperty Name="AVISOCOM_SYS_CRE" ColumnName="AVISOCOM_SYS_CRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCAS_AVISO_PUBLICA_ESTADO">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISO_PUBLICA_ESTADO">
+              <MappingFragment StoreEntitySet="TBCAS_AVISO_PUBLICA_ESTADO">
+                <ScalarProperty Name="AVISO_PUBLICA_ESTADO_DESCRIP" ColumnName="AVISO_PUBLICA_ESTADO_DESCRIP" />
+                <ScalarProperty Name="AVISO_PUBLICA_ESTADO_ID" ColumnName="AVISO_PUBLICA_ESTADO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCAS_AVISOS">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS">
+              <MappingFragment StoreEntitySet="TBCAS_AVISOS">
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="AVISO_TIPO_NRO" ColumnName="AVISO_TIPO_NRO" />
+                <ScalarProperty Name="AVISO_REGFECHA" ColumnName="AVISO_REGFECHA" />
+                <ScalarProperty Name="AVISO_REGHORA" ColumnName="AVISO_REGHORA" />
+                <ScalarProperty Name="AVISO_PUBFECHA" ColumnName="AVISO_PUBFECHA" />
+                <ScalarProperty Name="AVISO_PUBHORA" ColumnName="AVISO_PUBHORA" />
+                <ScalarProperty Name="AVISO_DESCRIPCION" ColumnName="AVISO_DESCRIPCION" />
+                <ScalarProperty Name="AVISO_SYS_EST" ColumnName="AVISO_SYS_EST" />
+                <ScalarProperty Name="AVISO_DETALLE" ColumnName="AVISO_DETALLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+              <MappingFragment StoreEntitySet="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="AVISOARCH_CODIGO" ColumnName="AVISOARCH_CODIGO" />
+                <ScalarProperty Name="AVISOARCH_USUARIO" ColumnName="AVISOARCH_USUARIO" />
+                <ScalarProperty Name="AVISOARCH_FECHA" ColumnName="AVISOARCH_FECHA" />
+                <ScalarProperty Name="AVISOARCH_HORA" ColumnName="AVISOARCH_HORA" />
+                <ScalarProperty Name="AVISOARCH_SYS_EST" ColumnName="AVISOARCH_SYS_EST" />
+                <ScalarProperty Name="AVISOARCH_SYS_CRE" ColumnName="AVISOARCH_SYS_CRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCAS_AVISOS_ESTADO">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_ESTADO">
+              <MappingFragment StoreEntitySet="TBCAS_AVISOS_ESTADO">
+                <ScalarProperty Name="AVISO_ESTADO_DESCRIP" ColumnName="AVISO_ESTADO_DESCRIP" />
+                <ScalarProperty Name="AVISO_ESTADO_NRO" ColumnName="AVISO_ESTADO_NRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCAS_AVISOS_PUBLICA">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_PUBLICA">
+              <MappingFragment StoreEntitySet="TBCAS_AVISOS_PUBLICA">
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="USUARI_CODIGO" ColumnName="USUARI_CODIGO" />
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="AVISO_PUBLICA_ESTADO_ID" ColumnName="AVISO_PUBLICA_ESTADO_ID" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBCAS_AVISOS_TIPO">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_TIPO">
+              <MappingFragment StoreEntitySet="TBCAS_AVISOS_TIPO">
+                <ScalarProperty Name="AVISO_TIPO_DESCRIP" ColumnName="AVISO_TIPO_DESCRIP" />
+                <ScalarProperty Name="AVISO_TIPO_NRO" ColumnName="AVISO_TIPO_NRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBUSUARI">
+            <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBUSUARI">
+              <MappingFragment StoreEntitySet="TBUSUARI">
+                <ScalarProperty Name="USUARI_CODIGO" ColumnName="USUARI_CODIGO" />
+                <ScalarProperty Name="USUARI_PASS" ColumnName="USUARI_PASS" />
+                <ScalarProperty Name="USUARI_FECPASS" ColumnName="USUARI_FECPASS" />
+                <ScalarProperty Name="USUARI_ESTADO" ColumnName="USUARI_ESTADO" />
+                <ScalarProperty Name="USUARI_ESTASOCIADO" ColumnName="USUARI_ESTASOCIADO" />
+                <ScalarProperty Name="USUARI_NIVEL" ColumnName="USUARI_NIVEL" />
+                <ScalarProperty Name="USUARI_FECINI" ColumnName="USUARI_FECINI" />
+                <ScalarProperty Name="USUARI_FECFIN" ColumnName="USUARI_FECFIN" />
+                <ScalarProperty Name="USUARI_DIAHORACC" ColumnName="USUARI_DIAHORACC" />
+                <ScalarProperty Name="USUARI_ACCFER" ColumnName="USUARI_ACCFER" />
+                <ScalarProperty Name="USUARI_NUMPASS" ColumnName="USUARI_NUMPASS" />
+                <ScalarProperty Name="USUARI_PASSANT" ColumnName="USUARI_PASSANT" />
+                <ScalarProperty Name="USUARI_SYS_CRE" ColumnName="USUARI_SYS_CRE" />
+                <ScalarProperty Name="USUARI_SYS_MOD" ColumnName="USUARI_SYS_MOD" />
+                <ScalarProperty Name="USUARI_SYS_EST" ColumnName="USUARI_SYS_EST" />
+                <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+                <ScalarProperty Name="USUARI_APEMAT" ColumnName="USUARI_APEMAT" />
+                <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+                <ScalarProperty Name="USUARI_DOCIDENAC" ColumnName="USUARI_DOCIDENAC" />
+                <ScalarProperty Name="USUARI_TIPDOCIDE" ColumnName="USUARI_TIPDOCIDE" />
+                <ScalarProperty Name="USUARI_CODDOCIDE" ColumnName="USUARI_CODDOCIDE" />
+                <ScalarProperty Name="USUARI_TIPO" ColumnName="USUARI_TIPO" />
+                <ScalarProperty Name="USUARI_TIPO_EXP" ColumnName="USUARI_TIPO_EXP" />
+                <ScalarProperty Name="USUARI_DIAS_EXP" ColumnName="USUARI_DIAS_EXP" />
+                <ScalarProperty Name="USUARI_CORREO" ColumnName="USUARI_CORREO" />
+                <ScalarProperty Name="PERSON_COD_INTERNO" ColumnName="PERSON_COD_INTERNO" />
+                <ScalarProperty Name="USUARI_TELEFONO" ColumnName="USUARI_TELEFONO" />
+                <ScalarProperty Name="USUARI_SEXO" ColumnName="USUARI_SEXO" />
+                <ScalarProperty Name="USUARI_FECHANAC" ColumnName="USUARI_FECHANAC" />
+                <ScalarProperty Name="USUARI_DIRECCION" ColumnName="USUARI_DIRECCION" />
+                <ScalarProperty Name="USUARI_PAIS" ColumnName="USUARI_PAIS" />
+                <ScalarProperty Name="USUARI_DPTO" ColumnName="USUARI_DPTO" />
+                <ScalarProperty Name="USUARI_PROV" ColumnName="USUARI_PROV" />
+                <ScalarProperty Name="USUARI_DIST" ColumnName="USUARI_DIST" />
+                <ScalarProperty Name="USUARI_EMPRESA" ColumnName="USUARI_EMPRESA" />
+                <ScalarProperty Name="USUARI_EMPRESA_OFICINA" ColumnName="USUARI_EMPRESA_OFICINA" />
+                <ScalarProperty Name="USUARI_EMPRESA_PUESTO" ColumnName="USUARI_EMPRESA_PUESTO" />
+                <ScalarProperty Name="USUARI_PROVEEDOR" ColumnName="USUARI_PROVEEDOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_BUSCAR_USUARIO" FunctionName="BDGEmpresa1TEModel.Store.SP_BUSCAR_USUARIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_BUSCAR_USUARIO_Result">
+                <ScalarProperty Name="USUARI_CODIGO" ColumnName="USUARI_CODIGO" />
+                <ScalarProperty Name="USUARI_PASS" ColumnName="USUARI_PASS" />
+                <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+                <ScalarProperty Name="USUARI_APEMAT" ColumnName="USUARI_APEMAT" />
+                <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+                <ScalarProperty Name="USUARI_CORREO" ColumnName="USUARI_CORREO" />
+                <ScalarProperty Name="USUARI_TELEFONO" ColumnName="USUARI_TELEFONO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_ADJUNTOS" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_ADJUNTOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_ADJUNTOS_Result">
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="AVISOARCH_CODIGO" ColumnName="AVISOARCH_CODIGO" />
+                <ScalarProperty Name="AVISO_ARCHIVO" ColumnName="AVISO_ARCHIVO" />
+                <ScalarProperty Name="AVISO_RUTA" ColumnName="AVISO_RUTA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_AVISO_COMPLETO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_AVISO_COMPLETO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_AVISO_COMPLETO_Result">
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+                <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+                <ScalarProperty Name="AVISO_DETALLE" ColumnName="AVISO_DETALLE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_AVISOS" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_AVISOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_AVISOS_Result">
+                <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+                <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+                <ScalarProperty Name="AVISO_DESCRIPCION" ColumnName="AVISO_DESCRIPCION" />
+                <ScalarProperty Name="AVISO_DETALLE" ColumnName="AVISO_DETALLE" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+                <ScalarProperty Name="AVISO_ESTADO_DESCRIP" ColumnName="AVISO_ESTADO_DESCRIP" />
+                <ScalarProperty Name="AVISO_TIPO_DESCRIP" ColumnName="AVISO_TIPO_DESCRIP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_COMENTARIO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_COMENTARIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_COMENTARIO_Result">
+                <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+                <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+                <ScalarProperty Name="AVISOCOM_COMENTARIO" ColumnName="AVISOCOM_COMENTARIO" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_ESTADO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_ESTADO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_ESTADO_Result">
+                <ScalarProperty Name="AVISO_ESTADO_DESCRIP" ColumnName="AVISO_ESTADO_DESCRIP" />
+                <ScalarProperty Name="AVISO_ESTADO_NRO" ColumnName="AVISO_ESTADO_NRO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_TIPO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_TIPO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_TIPO_Result">
+                <ScalarProperty Name="AVISO_TIPO_DESCRIP" ColumnName="AVISO_TIPO_DESCRIP" />
+                <ScalarProperty Name="AVISO_TIPO_NRO" ColumnName="AVISO_TIPO_NRO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NUEVO_COMENTARIO" FunctionName="BDGEmpresa1TEModel.Store.SP_NUEVO_COMENTARIO" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

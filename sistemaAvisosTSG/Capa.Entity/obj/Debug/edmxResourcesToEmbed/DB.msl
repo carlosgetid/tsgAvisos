@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDGEmpresa1TEModelStoreContainer" CdmEntityContainer="ConexionDB">
+    <EntitySetMapping Name="TBCAS_AVISO_ARCHIVO">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISO_ARCHIVO">
+        <MappingFragment StoreEntitySet="TBCAS_AVISO_ARCHIVO">
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="AVISO_ARCHIVO" ColumnName="AVISO_ARCHIVO" />
+          <ScalarProperty Name="AVISO_RUTA" ColumnName="AVISO_RUTA" />
+          <ScalarProperty Name="AVISO_SYS_CRE" ColumnName="AVISO_SYS_CRE" />
+          <ScalarProperty Name="AVISO_SYS_EST" ColumnName="AVISO_SYS_EST" />
+          <ScalarProperty Name="AVISOARCH_CODIGO" ColumnName="AVISOARCH_CODIGO" />
+          <ScalarProperty Name="AVISOARCH_NROVECES" ColumnName="AVISOARCH_NROVECES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBCAS_AVISO_COMENTARIO">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISO_COMENTARIO">
+        <MappingFragment StoreEntitySet="TBCAS_AVISO_COMENTARIO">
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="AVISOCOM_ID" ColumnName="AVISOCOM_ID" />
+          <ScalarProperty Name="AVISOCOM_USUARIO" ColumnName="AVISOCOM_USUARIO" />
+          <ScalarProperty Name="AVISOCOM_COMENTARIO" ColumnName="AVISOCOM_COMENTARIO" />
+          <ScalarProperty Name="AVISOCOM_FECHA" ColumnName="AVISOCOM_FECHA" />
+          <ScalarProperty Name="AVISOCOM_HORA" ColumnName="AVISOCOM_HORA" />
+          <ScalarProperty Name="AVISOCOM_SYS_EST" ColumnName="AVISOCOM_SYS_EST" />
+          <ScalarProperty Name="AVISOCOM_SYS_CRE" ColumnName="AVISOCOM_SYS_CRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBCAS_AVISO_PUBLICA_ESTADO">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISO_PUBLICA_ESTADO">
+        <MappingFragment StoreEntitySet="TBCAS_AVISO_PUBLICA_ESTADO">
+          <ScalarProperty Name="AVISO_PUBLICA_ESTADO_DESCRIP" ColumnName="AVISO_PUBLICA_ESTADO_DESCRIP" />
+          <ScalarProperty Name="AVISO_PUBLICA_ESTADO_ID" ColumnName="AVISO_PUBLICA_ESTADO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBCAS_AVISOS">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS">
+        <MappingFragment StoreEntitySet="TBCAS_AVISOS">
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="AVISO_TIPO_NRO" ColumnName="AVISO_TIPO_NRO" />
+          <ScalarProperty Name="AVISO_REGFECHA" ColumnName="AVISO_REGFECHA" />
+          <ScalarProperty Name="AVISO_REGHORA" ColumnName="AVISO_REGHORA" />
+          <ScalarProperty Name="AVISO_PUBFECHA" ColumnName="AVISO_PUBFECHA" />
+          <ScalarProperty Name="AVISO_PUBHORA" ColumnName="AVISO_PUBHORA" />
+          <ScalarProperty Name="AVISO_DESCRIPCION" ColumnName="AVISO_DESCRIPCION" />
+          <ScalarProperty Name="AVISO_SYS_EST" ColumnName="AVISO_SYS_EST" />
+          <ScalarProperty Name="AVISO_DETALLE" ColumnName="AVISO_DETALLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+        <MappingFragment StoreEntitySet="TBCAS_AVISOS_ARCHIVO_XUSUARIO">
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="AVISOARCH_CODIGO" ColumnName="AVISOARCH_CODIGO" />
+          <ScalarProperty Name="AVISOARCH_USUARIO" ColumnName="AVISOARCH_USUARIO" />
+          <ScalarProperty Name="AVISOARCH_FECHA" ColumnName="AVISOARCH_FECHA" />
+          <ScalarProperty Name="AVISOARCH_HORA" ColumnName="AVISOARCH_HORA" />
+          <ScalarProperty Name="AVISOARCH_SYS_EST" ColumnName="AVISOARCH_SYS_EST" />
+          <ScalarProperty Name="AVISOARCH_SYS_CRE" ColumnName="AVISOARCH_SYS_CRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBCAS_AVISOS_ESTADO">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_ESTADO">
+        <MappingFragment StoreEntitySet="TBCAS_AVISOS_ESTADO">
+          <ScalarProperty Name="AVISO_ESTADO_DESCRIP" ColumnName="AVISO_ESTADO_DESCRIP" />
+          <ScalarProperty Name="AVISO_ESTADO_NRO" ColumnName="AVISO_ESTADO_NRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBCAS_AVISOS_PUBLICA">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_PUBLICA">
+        <MappingFragment StoreEntitySet="TBCAS_AVISOS_PUBLICA">
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="USUARI_CODIGO" ColumnName="USUARI_CODIGO" />
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="AVISO_PUBLICA_ESTADO_ID" ColumnName="AVISO_PUBLICA_ESTADO_ID" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBCAS_AVISOS_TIPO">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBCAS_AVISOS_TIPO">
+        <MappingFragment StoreEntitySet="TBCAS_AVISOS_TIPO">
+          <ScalarProperty Name="AVISO_TIPO_DESCRIP" ColumnName="AVISO_TIPO_DESCRIP" />
+          <ScalarProperty Name="AVISO_TIPO_NRO" ColumnName="AVISO_TIPO_NRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBUSUARI">
+      <EntityTypeMapping TypeName="BDGEmpresa1TEModel.TBUSUARI">
+        <MappingFragment StoreEntitySet="TBUSUARI">
+          <ScalarProperty Name="USUARI_CODIGO" ColumnName="USUARI_CODIGO" />
+          <ScalarProperty Name="USUARI_PASS" ColumnName="USUARI_PASS" />
+          <ScalarProperty Name="USUARI_FECPASS" ColumnName="USUARI_FECPASS" />
+          <ScalarProperty Name="USUARI_ESTADO" ColumnName="USUARI_ESTADO" />
+          <ScalarProperty Name="USUARI_ESTASOCIADO" ColumnName="USUARI_ESTASOCIADO" />
+          <ScalarProperty Name="USUARI_NIVEL" ColumnName="USUARI_NIVEL" />
+          <ScalarProperty Name="USUARI_FECINI" ColumnName="USUARI_FECINI" />
+          <ScalarProperty Name="USUARI_FECFIN" ColumnName="USUARI_FECFIN" />
+          <ScalarProperty Name="USUARI_DIAHORACC" ColumnName="USUARI_DIAHORACC" />
+          <ScalarProperty Name="USUARI_ACCFER" ColumnName="USUARI_ACCFER" />
+          <ScalarProperty Name="USUARI_NUMPASS" ColumnName="USUARI_NUMPASS" />
+          <ScalarProperty Name="USUARI_PASSANT" ColumnName="USUARI_PASSANT" />
+          <ScalarProperty Name="USUARI_SYS_CRE" ColumnName="USUARI_SYS_CRE" />
+          <ScalarProperty Name="USUARI_SYS_MOD" ColumnName="USUARI_SYS_MOD" />
+          <ScalarProperty Name="USUARI_SYS_EST" ColumnName="USUARI_SYS_EST" />
+          <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+          <ScalarProperty Name="USUARI_APEMAT" ColumnName="USUARI_APEMAT" />
+          <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+          <ScalarProperty Name="USUARI_DOCIDENAC" ColumnName="USUARI_DOCIDENAC" />
+          <ScalarProperty Name="USUARI_TIPDOCIDE" ColumnName="USUARI_TIPDOCIDE" />
+          <ScalarProperty Name="USUARI_CODDOCIDE" ColumnName="USUARI_CODDOCIDE" />
+          <ScalarProperty Name="USUARI_TIPO" ColumnName="USUARI_TIPO" />
+          <ScalarProperty Name="USUARI_TIPO_EXP" ColumnName="USUARI_TIPO_EXP" />
+          <ScalarProperty Name="USUARI_DIAS_EXP" ColumnName="USUARI_DIAS_EXP" />
+          <ScalarProperty Name="USUARI_CORREO" ColumnName="USUARI_CORREO" />
+          <ScalarProperty Name="PERSON_COD_INTERNO" ColumnName="PERSON_COD_INTERNO" />
+          <ScalarProperty Name="USUARI_TELEFONO" ColumnName="USUARI_TELEFONO" />
+          <ScalarProperty Name="USUARI_SEXO" ColumnName="USUARI_SEXO" />
+          <ScalarProperty Name="USUARI_FECHANAC" ColumnName="USUARI_FECHANAC" />
+          <ScalarProperty Name="USUARI_DIRECCION" ColumnName="USUARI_DIRECCION" />
+          <ScalarProperty Name="USUARI_PAIS" ColumnName="USUARI_PAIS" />
+          <ScalarProperty Name="USUARI_DPTO" ColumnName="USUARI_DPTO" />
+          <ScalarProperty Name="USUARI_PROV" ColumnName="USUARI_PROV" />
+          <ScalarProperty Name="USUARI_DIST" ColumnName="USUARI_DIST" />
+          <ScalarProperty Name="USUARI_EMPRESA" ColumnName="USUARI_EMPRESA" />
+          <ScalarProperty Name="USUARI_EMPRESA_OFICINA" ColumnName="USUARI_EMPRESA_OFICINA" />
+          <ScalarProperty Name="USUARI_EMPRESA_PUESTO" ColumnName="USUARI_EMPRESA_PUESTO" />
+          <ScalarProperty Name="USUARI_PROVEEDOR" ColumnName="USUARI_PROVEEDOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_BUSCAR_USUARIO" FunctionName="BDGEmpresa1TEModel.Store.SP_BUSCAR_USUARIO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_BUSCAR_USUARIO_Result">
+          <ScalarProperty Name="USUARI_CODIGO" ColumnName="USUARI_CODIGO" />
+          <ScalarProperty Name="USUARI_PASS" ColumnName="USUARI_PASS" />
+          <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+          <ScalarProperty Name="USUARI_APEMAT" ColumnName="USUARI_APEMAT" />
+          <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+          <ScalarProperty Name="USUARI_CORREO" ColumnName="USUARI_CORREO" />
+          <ScalarProperty Name="USUARI_TELEFONO" ColumnName="USUARI_TELEFONO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LISTAR_ADJUNTOS" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_ADJUNTOS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_ADJUNTOS_Result">
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="AVISOARCH_CODIGO" ColumnName="AVISOARCH_CODIGO" />
+          <ScalarProperty Name="AVISO_ARCHIVO" ColumnName="AVISO_ARCHIVO" />
+          <ScalarProperty Name="AVISO_RUTA" ColumnName="AVISO_RUTA" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LISTAR_AVISO_COMPLETO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_AVISO_COMPLETO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_AVISO_COMPLETO_Result">
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+          <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="AVISO_DETALLE" ColumnName="AVISO_DETALLE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LISTAR_AVISOS" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_AVISOS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_AVISOS_Result">
+          <ScalarProperty Name="EMPRESA_CODIGO" ColumnName="EMPRESA_CODIGO" />
+          <ScalarProperty Name="AVISO_CODIGO" ColumnName="AVISO_CODIGO" />
+          <ScalarProperty Name="AVISO_DESCRIPCION" ColumnName="AVISO_DESCRIPCION" />
+          <ScalarProperty Name="AVISO_DETALLE" ColumnName="AVISO_DETALLE" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="AVISO_ESTADO_DESCRIP" ColumnName="AVISO_ESTADO_DESCRIP" />
+          <ScalarProperty Name="AVISO_TIPO_DESCRIP" ColumnName="AVISO_TIPO_DESCRIP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LISTAR_COMENTARIO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_COMENTARIO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_COMENTARIO_Result">
+          <ScalarProperty Name="USUARI_NOMBRES" ColumnName="USUARI_NOMBRES" />
+          <ScalarProperty Name="USUARI_APEPAT" ColumnName="USUARI_APEPAT" />
+          <ScalarProperty Name="AVISOCOM_COMENTARIO" ColumnName="AVISOCOM_COMENTARIO" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LISTAR_ESTADO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_ESTADO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_ESTADO_Result">
+          <ScalarProperty Name="AVISO_ESTADO_DESCRIP" ColumnName="AVISO_ESTADO_DESCRIP" />
+          <ScalarProperty Name="AVISO_ESTADO_NRO" ColumnName="AVISO_ESTADO_NRO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LISTAR_TIPO" FunctionName="BDGEmpresa1TEModel.Store.SP_LISTAR_TIPO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BDGEmpresa1TEModel.SP_LISTAR_TIPO_Result">
+          <ScalarProperty Name="AVISO_TIPO_DESCRIP" ColumnName="AVISO_TIPO_DESCRIP" />
+          <ScalarProperty Name="AVISO_TIPO_NRO" ColumnName="AVISO_TIPO_NRO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_NUEVO_COMENTARIO" FunctionName="BDGEmpresa1TEModel.Store.SP_NUEVO_COMENTARIO" />
+  </EntityContainerMapping>
+</Mapping>
