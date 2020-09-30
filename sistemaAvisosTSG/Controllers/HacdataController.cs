@@ -35,6 +35,7 @@ namespace sistemaAvisosTSG.Controllers
                 ta.AVISO_ESTADO_DESCRIP = dr.GetString(6);
                 ta.AVISO_TIPO_DESCRIP = dr.GetString(7);
 
+                System.Diagnostics.Debug.WriteLine(ta.AVISO_PUBFECHA);
                 listadito.Add(ta);
             }
 

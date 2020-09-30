@@ -309,51 +309,61 @@
         });
 
         let arr = @Html.Raw(Json.Encode(Model));
+        let celdaFechaId = 111;
+        let arrayFechasIds = [];
 
         function tabla() {
             $.each(arr, function (index, item) {
 
+                let fechaPublicacion = new Date(parseInt(arr[index].AVISO_PUBFECHA.replace('/Date(', '')));
+                let mesNumero = fechaPublicacion.getMonth() + 1;
+
+
                 $("#table_id").append(
                     `<tr>` +
 
-                    `<td class="text-center w-100">`+
-                             `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`&pCodigo=@ViewBag.codigoUser>` +
-                                 `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
-                              `</a>`+
+                    `<td class="text-center w-100">` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
+                    `</a>` +
                     `</td >` +
 
-                    `<td class="d-none">`+
+                    `<td class="d-none">` +
                     `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
-                                 `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
-                              `</a>`+
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_DETALLE + `</p >` +
+                    `</a>` +
                     `</td >` +
 
-                    `<td>`+
+                    `<td>` +
                     `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
-                    `<p class= "col-7 overflow-hidden elegir" >` + new Date(parseInt(arr[index].AVISO_PUBFECHA.replace('/Date(', '')))+`</p >`+
-                              `</a>`+
+                    `<p id="` + celdaFechaId + `" class= "col-7 overflow-hidden elegir" >` + fechaPublicacion.getFullYear() + "-" + mesNumero + "-" + ("0" + fechaPublicacion.getDate()).slice(-2) + `</p >` +
+                    `</a>` +
                     `</td >` +
 
 
-                    `<td class="d-none">`+
+                    `<td class="d-none">` +
                     `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
-                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBHORA+`</p >`+
-                              `</a>`+
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBHORA + `</p >` +
+                    `</a>` +
                     `</td >` +
 
-                    `<td class="d-none">`+
+                    `<td class="d-none">` +
                     `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
-                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP+`</p >`+
-                              `</a>`+
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP + `</p >` +
+                    `</a>` +
                     `</td >` +
 
-                    `<td class="d-none">`+
+                    `<td class="d-none">` +
                     `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
-                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
-                              `</a>`+
-                        `</td >`+
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP + `</p >` +
+                    `</a>` +
+                    `</td >` +
 
-                    + `</tr>`)
+                    + `</tr>`);
+
+                arrayFechasIds.push(celdaFechaId);
+                celdaFechaId++;
+                
             });
             $('#table_id').DataTable();
         };
@@ -392,7 +402,26 @@
 
         function filtrarFechaInicio() {
             let x = $('#fechaInicioID').val();
-            console.log(x);
+
+            let acumuladorFechas = "";
+            $('#table_id').DataTable().search('').columns().search('').draw();
+            //console.log(arrayFechasIds[i]);
+            for (i = 0; i < arrayFechasIds.length; i++) {
+                let fechaCelda = $("#"+arrayFechasIds[i]).text();
+                if (x <= fechaCelda)
+                    acumuladorFechas +=fechaCelda+"|";
+                else
+                    acumuladorFechas +=x;
+
+                console.log(arrayFechasIds[i])
+                console.log(acumuladorFechas)
+            }
+
+            let busc = '2000 - 11 - 05 || 2020 - 12 - 12';
+            
+            //$('#table_id').DataTable().search('2020-12-12|2000-11-05', true, false).draw();
+
+            $('#table_id').DataTable().search(acumuladorFechas, true, false).draw();
         }
 
         function filtrarFechaFin() {
