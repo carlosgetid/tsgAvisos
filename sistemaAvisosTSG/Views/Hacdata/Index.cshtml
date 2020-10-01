@@ -26,16 +26,16 @@
                             <div class="col-12">
                                 <em class="m-0">Fecha inicio </em>
                             </div>
-                           
+
                             <div class="col-12 mb-1">
-                                <input class="form-control w-100" type="date" name="dtFechaInicio" />
+                                <input id="fechaInicioID" class="form-control w-100" type="date" name="dtFechaInicio" onchange="filtrarFechaInicio()"/>
                             </div>
                             <div class="col-12">
                                 <em class="m-0">Fecha fin </em>
                             </div>
                             
                             <div class="col-12 mb-1">
-                                <input class="form-control w-100" type="date" name="dtFechaFin" />
+                                <input id="fechaFinID" class="form-control w-100" type="date" name="dtFechaFin" onchange="filtrarFechaFin()"/>
                             </div>
                             <div class="col-12 mb-1">
                                 <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrarEstado(this)">
@@ -79,11 +79,12 @@
                                 <thead>
                                     <tr>
                                         <th class="border-0 text-dark">Descripcion</th>
-                                        @*columna oculta, no borrar, permite filtrar por detalle*@
+                                        @*columnas ocultas, no borrar, permite filtrar por detalle*@
                                         <th class="d-none">Column 2</th>
-                                        <th class="d-none">Column 2</th>
-                                        <th class="d-none">Column 2</th>
-                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 3</th>
+                                        <th class="d-none">Column 4</th>
+                                        <th class="d-none">Column 5</th>
+                                        <th class="d-none">Column 6</th>
                                     </tr>
                                 </thead>
 
@@ -93,7 +94,7 @@
                             </table>
                         </div>
                         
-
+                        .
                         @{int i = 1;}
       
                         
@@ -290,11 +291,18 @@
         });
 
         let arr = @Html.Raw(Json.Encode(Model));
+        let celdaFechaId = 111;
+        let arrayFechasIds = [];
 
         function tabla() {
             $.each(arr, function (index, item) {
 
+                let fechaPublicacion = new Date(parseInt(arr[index].AVISO_PUBFECHA.replace('/Date(', '')));
+                let mesNumero = fechaPublicacion.getMonth() + 1;
+
+
                 $("#table_id").append(
+<<<<<<< HEAD
                     `<tr>`+
                         `<td class="text-center w-100">`+
                              `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_CODIGO+`&pCodigo=@ViewBag.codigoUser>` +
@@ -321,8 +329,52 @@
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
                               `</a>`+
                         `</td >`+
+=======
+                    `<tr>` +
 
-                    + `</tr>`)
+                    `<td class="text-center w-100">` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
+                    `</a>` +
+                    `</td >` +
+
+                    `<td class="d-none">` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_DETALLE + `</p >` +
+                    `</a>` +
+                    `</td >` +
+
+                    `<td>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p id="` + celdaFechaId + `" class= "col-7 overflow-hidden elegir" >` + fechaPublicacion.getFullYear() + "-" + mesNumero + "-" + ("0" + fechaPublicacion.getDate()).slice(-2) + `</p >` +
+                    `</a>` +
+                    `</td >` +
+
+
+                    `<td class="d-none">` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBHORA + `</p >` +
+                    `</a>` +
+                    `</td >` +
+
+                    `<td class="d-none">` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP + `</p >` +
+                    `</a>` +
+                    `</td >` +
+>>>>>>> cfff423b159634cdd69fb461eff3904b5235705c
+
+                    `<td class="d-none">` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP + `</p >` +
+                    `</a>` +
+                    `</td >` +
+
+                    + `</tr>`);
+
+                arrayFechasIds.push(celdaFechaId);
+                celdaFechaId++;
+                
             });
             $('#table_id').DataTable();
         };
@@ -339,9 +391,9 @@
             let descripcion = index.options[index.selectedIndex].text;
             if (descripcion === "Estado")
                 estado = "";
-            else 
+            else
                 estado = descripcion;
-            
+
                 acumulador = estado + " " + tipo;
 
                 $('#table_id').DataTable().search(acumulador).draw();
@@ -351,15 +403,41 @@
             let descripcion = index.options[index.selectedIndex].text;
             if (descripcion === "Tipo")
                 tipo = "";
-            else 
+            else
                 tipo = descripcion;
-            
+
                 acumulador = estado + " " + tipo;
 
                 $('#table_id').DataTable().search(acumulador).draw();
         }
 
+        function filtrarFechaInicio() {
+            let x = $('#fechaInicioID').val();
 
+            let acumuladorFechas = "";
+            $('#table_id').DataTable().search('').columns().search('').draw();
+            //console.log(arrayFechasIds[i]);
+            for (i = 0; i < arrayFechasIds.length; i++) {
+                let fechaCelda = $("#"+arrayFechasIds[i]).text();
+                if (x <= fechaCelda)
+                    acumuladorFechas +=fechaCelda+"|";
+                else
+                    acumuladorFechas +=x;
+
+                console.log(arrayFechasIds[i])
+                console.log(acumuladorFechas)
+            }
+
+            let busc = '2000 - 11 - 05 || 2020 - 12 - 12';
+            
+            //$('#table_id').DataTable().search('2020-12-12|2000-11-05', true, false).draw();
+
+            $('#table_id').DataTable().search(acumuladorFechas, true, false).draw();
+        }
+
+        function filtrarFechaFin() {
+
+        }
     </script>
 
 </body>

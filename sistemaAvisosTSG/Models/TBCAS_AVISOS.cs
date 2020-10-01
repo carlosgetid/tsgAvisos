@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -16,7 +17,7 @@ namespace sistemaAvisosTSG.Models
         public string AVISO_REGFECHA { get; set; }
 
         public string AVISO_REGHORA { get; set; }
-    
+
 	    public DateTime AVISO_PUBFECHA { get; set; }
 
         public string AVISO_PUBHORA { get; set; }

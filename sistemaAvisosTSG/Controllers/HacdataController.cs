@@ -15,7 +15,14 @@ namespace sistemaAvisosTSG.Controllers
 {
     public class HacdataController : Controller
     {
+<<<<<<< HEAD
         IEnumerable<TBCAS_AVISOS> listaAvisos()
+=======
+        SqlConnection con = new SqlConnection("server=DESKTOP-KQLETA7\\SQLEXPRESS;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+        //SqlConnection con = new SqlConnection("server=(localdb)\\Servidor;database=BDGEmpresa1TE;uid=sa;pwd=sql");
+
+        public IEnumerable<TBCAS_AVISOS> listaAvisos()
+>>>>>>> cfff423b159634cdd69fb461eff3904b5235705c
         {
             HttpClient http = new HttpClient();
             List<TBCAS_AVISOS> listado = new List<TBCAS_AVISOS>();
@@ -23,8 +30,23 @@ namespace sistemaAvisosTSG.Controllers
             var request = http.GetAsync("").Result;
             if (request.IsSuccessStatusCode)
             {
+<<<<<<< HEAD
                 var resultString = request.Content.ReadAsStringAsync().Result;
                 listado = JsonConvert.DeserializeObject<List<TBCAS_AVISOS>>(resultString);
+=======
+                TBCAS_AVISOS ta = new TBCAS_AVISOS();
+                ta.EMPRESA_CODIGO = dr.GetString(0);
+                ta.AVISO_NRO = dr.GetDecimal(1);
+                ta.AVISO_DESCRIPCION = dr.GetString(2);
+                ta.AVISO_DETALLE = dr.GetString(3);
+                ta.AVISO_PUBFECHA = dr.GetDateTime(4);
+                ta.AVISO_PUBHORA = dr.GetString(5);
+                ta.AVISO_ESTADO_DESCRIP = dr.GetString(6);
+                ta.AVISO_TIPO_DESCRIP = dr.GetString(7);
+
+                System.Diagnostics.Debug.WriteLine(ta.AVISO_PUBFECHA);
+                listadito.Add(ta);
+>>>>>>> cfff423b159634cdd69fb461eff3904b5235705c
             }
             return listado;
         }
