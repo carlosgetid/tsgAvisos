@@ -1,0 +1,205 @@
+﻿@using Capa.EN
+@model TBCAS_AVISO_COMENTARIO
+@{
+    ViewBag.Title = "Principal";
+}
+
+@using (Html.BeginForm())
+{
+<body class="text-white" style="background-color: #ced4da">
+    <div class="container contenedor">
+        <div class="row mt-4 border rounded border-white">
+            <!--Zona 1-->
+            <div class="col-12 col-md-4 p-0">
+                <!--Zona 1.1 (1)-->
+                <div class="row p-2 m-1 border rounded">
+                    <div class="col-12 mb-1">
+                        <label class="h5 m-0" for="busqueda">Busqueda: </label>
+                    </div>
+                    <div class="col-12 overflow-hidden mb-1">
+                        <input type="text" class="form-control" id="buscador" placeholder="Insertar palabra de busqueda">
+
+                    </div>
+                    <div class="col-12 mt-1">
+                        <p class="lead m-0">Filtros: </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <em class="m-0">Fecha inicio </em>
+                            </div>
+
+                            <div class="col-12 mb-1">
+                                <input class="form-control w-100" type="date" name="dtFechaInicio" />
+                            </div>
+                            <div class="col-12">
+                                <em class="m-0">Fecha fin </em>
+                            </div>
+
+                            <div class="col-12 mb-1">
+                                <input class="form-control w-100" type="date" name="dtFechaFin" />
+                            </div>
+                            <div class="col-12 mb-1">
+                                <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrarEstado(this)">
+                                    <option selected>Estado</option>
+                                    @{
+                                        IEnumerable<SP_LISTAR_ESTADO_Result> estado = ViewBag.listaEstado as IEnumerable<SP_LISTAR_ESTADO_Result>;
+
+                                        foreach (var oEstado in estado)
+                                        {
+                                            <option value="@oEstado.AVISO_ESTADO_NRO">@oEstado.AVISO_ESTADO_DESCRIP</option>
+                                        }
+                                    }
+                                </select>
+                                <select class="custom-select" name="cboTipo" id="cboTipoId" onchange="filtrarTipo(this)">
+                                    <option selected>Tipo</option>
+                                    @{
+                                        IEnumerable<SP_LISTAR_TIPO_Result> tipo = ViewBag.listaTipo as IEnumerable<SP_LISTAR_TIPO_Result>;
+
+                                        foreach (var oTipo in tipo)
+                                        {
+                                            <option value="@oTipo.AVISO_TIPO_NRO">@oTipo.AVISO_TIPO_DESCRIP</option>
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Zona 1.2 (2)-->
+                <div class="row p-2 m-1 border rounded">
+                    <div class="col-12 camposDeFiltro overflow-hidden">
+                        <p class="h5">Lista de asuntos: </p>
+
+                        <div class="row row-table color rounded">
+                            <table id="table_id" class="col-12 display text-center border-0 w-100 overflow-hidden">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-dark">Descripcion</th>
+                                        @*columna oculta, no borrar, permite filtrar por detalle*@
+                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 2</th>
+                                        <th class="d-none">Column 2</th>
+                                    </tr>
+                                </thead>
+
+                                @*etiquetas innecesarias pero que permiten el funcionamiento correcto*@
+                                <tbody></tbody>
+
+                            </table>
+                        </div>
+                        @{int i = 1;}
+                     </div>
+                </div>
+            </div>
+            <!--Zona 2-->
+            @Html.Partial("_PartialMostrarAviso",Model);
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="~/Scripts/funciones.js"></script>
+    <script>
+        for (let i = 1; i <= 3; i++) {
+            $("#avisoBotonId" + i).click(function () {
+                let desc = $("#descripcion" + i).text();
+                console.log(desc);
+            });
+        }
+    </script>
+    <script>
+        let foo = @Html.Raw(Json.Encode(Model));
+        console.log(foo[0]);
+        console.log(foo[0].EMPRESA_CODIGO);
+        console.log(foo[0].AVISO_NRO);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            tabla();
+            $('#table_id_filter').removeClass("dataTables_filter").addClass("d-none");
+            $('#table_id_length').removeClass("dataTables_length").addClass("d-none");
+            $('#table_id_info').removeClass("dataTables_info").addClass("d-none");
+            $('.row-table > #table_id_wrapper').addClass("w-100");
+        });
+
+        let arr = @Html.Raw(Json.Encode(ViewBag.listaAvisosTodos));
+
+        function tabla() {
+            $.each(arr, function (index, item) {
+
+                $("#table_id").append(
+                    `<tr>`+
+                        `<td class="text-center w-100">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Principal?EMPRESA_CODIGO=` + arr[index].EMPRESA_CODIGO + `&AVISO_CODIGO=` + arr[index].AVISO_CODIGO +`&AVISOCOM_USUARIO=@ViewBag.codigoUser>` +
+                                 `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
+                              `</a>`+
+                    `</td >`+
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Principal?EMPRESA_CODIGO=` + arr[index].EMPRESA_CODIGO + `&AVISO_CODIGO=` + arr[index].AVISO_CODIGO + `&AVISOCOM_USUARIO=@ViewBag.codigoUser>` +
+                                 `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Principal?EMPRESA_CODIGO=` + arr[index].EMPRESA_CODIGO + `&AVISO_CODIGO=` + arr[index].AVISO_CODIGO + `&AVISOCOM_USUARIO=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBFECHA+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Principal?EMPRESA_CODIGO=` + arr[index].EMPRESA_CODIGO + `&AVISO_CODIGO=` + arr[index].AVISO_CODIGO + `&AVISOCOM_USUARIO=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP+`</p >`+
+                              `</a>`+
+                    `</td >` +
+                    `<td class="d-none">`+
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Principal?EMPRESA_CODIGO=` + arr[index].EMPRESA_CODIGO + `&AVISO_CODIGO=` + arr[index].AVISO_CODIGO + `&AVISOCOM_USUARIO=@ViewBag.codigoUser>` +
+                    `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
+                              `</a>`+
+                        `</td >`+
+
+                    + `</tr>`)
+            });
+            $('#table_id').DataTable();
+        };
+
+        $('#buscador').keyup(function () {
+            $('#table_id').DataTable().search($(this).val()).draw();
+        });
+
+        let acumulador = "";
+        let estado = "";
+        let tipo = "";
+
+        function filtrarEstado(index) {
+            let descripcion = index.options[index.selectedIndex].text;
+            if (descripcion === "Estado")
+                estado = "";
+            else
+                estado = descripcion;
+
+                acumulador = estado + " " + tipo;
+
+                $('#table_id').DataTable().search(acumulador).draw();
+        }
+
+        function filtrarTipo(index) {
+            let descripcion = index.options[index.selectedIndex].text;
+            if (descripcion === "Tipo")
+                tipo = "";
+            else
+                tipo = descripcion;
+
+                acumulador = estado + " " + tipo;
+
+                $('#table_id').DataTable().search(acumulador).draw();
+        }
+
+
+    </script>
+
+</body>
+
+}
+    
+
+

@@ -173,9 +173,9 @@ namespace Capa.DAL
             return listadito;
         }
 
-        public string crearComentario(TBCAS_AVISO_COMENTARIO oComentario)
+        public bool crearComentario(TBCAS_AVISO_COMENTARIO oComentario)
         {
-            string mensaje = "Registo exitoso";
+            bool confirmacion = true;
             SqlCommand cmd = new SqlCommand("SP_NUEVO_COMENTARIO", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@id_empresa", oComentario.EMPRESA_CODIGO);
@@ -189,9 +189,9 @@ namespace Capa.DAL
 
             if (ok == 0)
             {
-                mensaje = "No registrado";
+                confirmacion = false;
             }
-            return mensaje;
+            return confirmacion;
         }
     }
 }

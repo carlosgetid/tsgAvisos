@@ -32,7 +32,8 @@ namespace Capa.EN
         public string AVISO_DESCRIPCION { get; set; }
         public string AVISO_SYS_EST { get; set; }
         public string AVISO_DETALLE { get; set; }
-    
+        public string AVISOCOM_USUARIO { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBCAS_AVISO_ARCHIVO> TBCAS_AVISO_ARCHIVO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

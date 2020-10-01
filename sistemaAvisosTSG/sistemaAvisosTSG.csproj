@@ -52,6 +52,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -123,6 +126,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Capa.Entity\SP_BUSCAR_USUARIO_Result.cs" />
+    <Compile Include="Capa.Entity\SP_LISTAR_ADJUNTOS_Result.cs" />
+    <Compile Include="Capa.Entity\SP_LISTAR_AVISOS_Result.cs" />
+    <Compile Include="Capa.Entity\SP_LISTAR_AVISO_COMPLETO_Result.cs" />
+    <Compile Include="Capa.Entity\SP_LISTAR_COMENTARIO_Result.cs" />
+    <Compile Include="Capa.Entity\SP_LISTAR_ESTADO_Result.cs" />
+    <Compile Include="Capa.Entity\SP_LISTAR_TIPO_Result.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISOS.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISOS_ARCHIVO_XUSUARIO.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISOS_ESTADO.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISOS_PUBLICA.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISOS_TIPO.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISO_ARCHIVO.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISO_COMENTARIO.cs" />
+    <Compile Include="Capa.Entity\TBCAS_AVISO_PUBLICA_ESTADO.cs" />
+    <Compile Include="Capa.Entity\TBUSUARI.cs" />
     <Compile Include="Controllers\HacdataController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -282,6 +301,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Hacdata\Index.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialMostrarAviso.cshtml" />
+    <Content Include="Views\Hacdata\Principal.cshtml" />
+    <Content Include="Views\Hacdata\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

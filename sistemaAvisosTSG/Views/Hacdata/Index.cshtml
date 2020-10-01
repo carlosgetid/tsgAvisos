@@ -1,28 +1,10 @@
-﻿@model List<sistemaAvisosTSG.Models.TBCAS_AVISOS>
+﻿@using Capa.EN
+@model List<Capa.EN.TBCAS_AVISOS>
 @{
     ViewBag.Title = "Index";
 }
 
 <html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!--Icono titulo-->
-    <link rel="shortcut icon" href="http://static.wixstatic.com/media/505a0d_8bb4a2eed40145f2b2104a1bda34570e%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/505a0d_8bb4a2eed40145f2b2104a1bda34570e%7Emv2.png" type="image/png">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="estilos.css">
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-
-    @Scripts.Render("~/bundles/jquery")
-
-    <title>Consulas HACDATA</title>
-</head>
 
 <body class="text-white" style="background-color: #ced4da">
     <div class="container contenedor">
@@ -59,11 +41,11 @@
                                 <select class="custom-select" name="cboEstado" id="cboEstadoId" onchange="filtrarEstado(this)">
                                     <option selected>Estado</option>
                                     @{
-                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> estado = ViewBag.listaEstado as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
+                                        IEnumerable<SP_LISTAR_ESTADO_Result> estado = ViewBag.listaEstado as IEnumerable<SP_LISTAR_ESTADO_Result>;
 
                                         foreach (var oEstado in estado)
                                         {
-                                            <option value="@oEstado.AVISO_SYS_EST">@oEstado.AVISO_ESTADO_DESCRIP</option>
+                                            <option value="@oEstado.AVISO_ESTADO_NRO">@oEstado.AVISO_ESTADO_DESCRIP</option>
                                         }
                                     }
 
@@ -71,7 +53,7 @@
                                 <select class="custom-select" name="cboTipo" id="cboTipoId" onchange="filtrarTipo(this)">
                                     <option selected>Tipo</option>
                                     @{
-                                        IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS> tipo = ViewBag.listaTipo as IEnumerable<sistemaAvisosTSG.Models.TBCAS_AVISOS>;
+                                        IEnumerable<SP_LISTAR_TIPO_Result> tipo = ViewBag.listaTipo as IEnumerable<SP_LISTAR_TIPO_Result>;
 
                                         foreach (var oTipo in tipo)
                                         {
@@ -131,7 +113,7 @@
                             @{
 
 
-                                var oSP_LISTAR_AVISO = ViewBag.listaAvisos as sistemaAvisosTSG.Models.SP_LISTAR_AVISO;
+                                var oSP_LISTAR_AVISO = ViewBag.listaAvisos as SP_LISTAR_AVISO_COMPLETO_Result;
 
                                 if (oSP_LISTAR_AVISO.AVISO_CODIGO == 0)
                                 {
@@ -205,7 +187,7 @@
                         <div class="row">
 
                             @{
-                                var listaComentario = ViewBag.listaComentario as IEnumerable<sistemaAvisosTSG.Models.SP_LISTAR_COMENTARIO>;
+                                var listaComentario = ViewBag.listaComentario as IEnumerable<SP_LISTAR_COMENTARIO_Result>;
 
                                 if (!listaComentario.Any())
                                 {
@@ -223,7 +205,7 @@
                                         <div class="col-12 border-top mt-2 seleccion rounded">
                                             <label class="m-0" for="comentario">@oComentario.USUARI_NOMBRES @oComentario.USUARI_APEPAT</label>
                                            
-                                            <p class="float-right m-0">@oComentario.AVISOCOM_FECHA @oComentario.AVISOCOM_HORA</p>
+                                            <p class="float-right m-0">@oComentario.Column1 @oComentario.Column2</p>
                                             <textarea class="form-control w-100 col-12 mb-1" disabled id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
 
                                         </div>
@@ -240,7 +222,7 @@
                     <div class="col-12">
                         <p class="h5">Listado adjuntos: </p>
                         <div class="row">
-                            @{ var listadoAdjuntos = ViewBag.listaAdjunto as IEnumerable<sistemaAvisosTSG.Models.SP_LISTAR_ADJUNTOS>;
+                            @{ var listadoAdjuntos = ViewBag.listaAdjunto as IEnumerable<SP_LISTAR_ADJUNTOS_Result>;
 
                                 if (!listadoAdjuntos.Any())
                                 {
@@ -315,27 +297,27 @@
                 $("#table_id").append(
                     `<tr>`+
                         `<td class="text-center w-100">`+
-                             `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_NRO+`&pCodigo=@ViewBag.codigoUser>` +
+                             `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida" id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=`+arr[index].EMPRESA_CODIGO+`&aviso=`+arr[index].AVISO_CODIGO+`&pCodigo=@ViewBag.codigoUser>` +
                                  `<p id="@("descripcion")" class="col-5 overflow-hidden d-inline">` + arr[index].AVISO_DESCRIPCION + `</p>` +
                               `</a>`+
                     `</td >`+
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_CODIGO + `&pCodigo=@ViewBag.codigoUser>` +
                                  `<p class= "col-7 overflow-hidden elegir" >` +arr[index].AVISO_DETALLE+`</p >`+
                               `</a>`+
                     `</td >` +
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_CODIGO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_PUBFECHA+`</p >`+
                               `</a>`+
                     `</td >` +
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_CODIGO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_ESTADO_DESCRIP+`</p >`+
                               `</a>`+
                     `</td >` +
                     `<td class="d-none">`+
-                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_NRO + `&pCodigo=@ViewBag.codigoUser>` +
+                    `<a  style="text-decoration:none" value="@i" class="text-dark rounded overflow-hidden medida " id="@("avisoBotonId")" href=/Hacdata/Buscar?empresa=` + arr[index].EMPRESA_CODIGO + `&aviso=` + arr[index].AVISO_CODIGO + `&pCodigo=@ViewBag.codigoUser>` +
                     `<p class= "col-7 overflow-hidden elegir" >` + arr[index].AVISO_TIPO_DESCRIP+`</p >`+
                               `</a>`+
                         `</td >`+

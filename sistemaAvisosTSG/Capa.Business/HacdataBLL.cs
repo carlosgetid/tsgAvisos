@@ -42,7 +42,7 @@ namespace Capa.BLL
             return hdal.listaAdjunto(empresa,aviso);
         }
 
-        public string crearComentario(TBCAS_AVISO_COMENTARIO oComentario)
+        public bool crearComentario(TBCAS_AVISO_COMENTARIO oComentario)
         {
             return hdal.crearComentario(oComentario);
         }

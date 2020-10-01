@@ -157,3 +157,11 @@ C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.
 C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.pdb
 C:\Users\carlo\Documents\tsgAvisos\sistemaAvisosTSG\obj\Debug\sistemaAvisosTSG.csprojAssemblyReference.cache
 C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.Optimization.resources.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\System.Net.Http.Formatting.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\System.Net.Http.Formatting.xml
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.Helpers.resources.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.Mvc.resources.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.Razor.resources.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.WebPages.resources.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\HALION\Documents\AProyecto\sistemaAvisosTSG\bin\es\System.Web.WebPages.Razor.resources.dll

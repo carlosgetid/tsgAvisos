@@ -6,7 +6,7 @@
     //});
 
     $('.control > p').on('click', function () {
-        $('.control > textarea').toggleClass('d-inline-block');
+        $('.control > .txtComentario').toggleClass('d-inline-block');
         $('.control > div > .d-inline-block').removeClass('d-inline-block').addClass("d-none");
     });
 

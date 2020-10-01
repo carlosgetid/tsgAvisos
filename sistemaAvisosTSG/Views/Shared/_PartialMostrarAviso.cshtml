@@ -1,0 +1,149 @@
+﻿@using Capa.EN
+@model TBCAS_AVISO_COMENTARIO
+
+@using (Html.BeginForm())
+{
+    <div class="col-12 col-md-8 p-0 align-items-center">
+        <!--Zona 2.1 (3)-->
+        <div class="row p-2 m-1 border rounded">
+            <div class="col-12 col-md-12">
+                <h6 class="d-inline-block m-0">Asunto</h6>
+                <p>@Model.AVISO_CODIGO=125</p>
+                <div class="row">
+                    @{
+                        SP_LISTAR_AVISO_COMPLETO_Result oSP_LISTAR_AVISO = ViewBag.listaAvisos as SP_LISTAR_AVISO_COMPLETO_Result;
+
+                        if (oSP_LISTAR_AVISO == null)
+                        {
+                            <div class="col">
+                                <p class="lead text-center">
+                                    <em>No hay data</em>
+                                    <img src="~/img/nodatafound.png" class="img-fluid" />
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12 col-md-6 text-center">
+                                <p class="lead">@oSP_LISTAR_AVISO.USUARI_NOMBRES @oSP_LISTAR_AVISO.USUARI_APEPAT</p>
+                                <p>@oSP_LISTAR_AVISO.AVISO_CODIGO</p>
+                            </div>
+                            <div class="col-12 col-md-6 text-center control">
+                                <p class="m-0 d-block btn btn-success">Realizar comentario</p>
+                              
+                                @Html.TextAreaFor(model => model.AVISOCOM_COMENTARIO, new { @class = "m-0 w-100 mt-1 d-none txtComentario" })
+                                
+                                <div>
+                                    <input type="submit" class="m-0 float-right btn btn-primary d-none btnPublicar" value="Publicar" class="btn btn-default" />
+                                    
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!--Zona 2.2 (4)-->
+        <div class="row p-2 m-1 border rounded">
+            <div class="col">
+                <h6 class="d-inline-block">DETALLE</h6>
+                <div class="row">
+                    <div class="col">
+                        @{
+
+                            if (oSP_LISTAR_AVISO == null)
+                            {
+                                <p class="lead text-center">
+                                    <em>No hay data</em>
+                                    <img src="~/img/nodatafound.png" class="img-fluid" />
+                                </p>
+                            }
+                            else
+                            {
+
+                                <p>@oSP_LISTAR_AVISO.AVISO_DETALLE</p>
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Zona 2.3 (5)-->
+        <div class="row p-2 m-1 border rounded">
+            <div class="col-12">
+                <p class="h5 m-0">Listado de comentarios</p>
+                <div class="row">
+
+                    @{
+                        var listaComentario = ViewBag.listaComentario as IEnumerable<SP_LISTAR_COMENTARIO_Result>;
+
+                        if (listaComentario == null)
+                        {
+                            <div class="col-12 mt-2">
+                                <p class="lead text-center">
+                                    <em>No hay data</em>
+                                    <img src="~/img/nodatafound.png" class="img-fluid" />
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            foreach (var oComentario in listaComentario)
+                            {
+                                <div class="col-12 border-top mt-2 seleccion rounded">
+                                    <label class="m-0" for="comentario">@oComentario.USUARI_NOMBRES @oComentario.USUARI_APEPAT</label>
+
+                                    <p class="float-right m-0">@oComentario.Column1 @oComentario.Column2</p>
+                                    <textarea class="form-control w-100 col-12 mb-1" disabled id="comentario">@oComentario.AVISOCOM_COMENTARIO</textarea>
+
+                                </div>
+                            }
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!--Zona 2.4 (6)-->
+        <div class="row p-2 m-1 border rounded">
+            <div class="col-12">
+                <p class="h5">Listado adjuntos: </p>
+                <div class="row">
+                    @{ var listadoAdjuntos = ViewBag.listaAdjunto as IEnumerable<SP_LISTAR_ADJUNTOS_Result>;
+
+                        if (listaComentario == null)
+                        {
+                            <div class="col-12 mt-2">
+                                <p class="lead text-center">
+                                    <em>No hay data</em>
+                                    <img src="~/img/nodatafound.png" class="img-fluid" />
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12 text-center pl-2 pr-2">
+                                @foreach (var oAdjuntos in listadoAdjuntos)
+                                {
+                                    <div class="row border-top rounded seleccion py-2">
+                                        <p class="col-4 m-0">@oAdjuntos.AVISO_ARCHIVO</p>
+                                        <p class="col-8 m-0"><a href="@oAdjuntos.AVISO_RUTA">@oAdjuntos.AVISO_RUTA</a></p>
+                                    </div>
+
+                                }
+                            </div>
+                        }
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
